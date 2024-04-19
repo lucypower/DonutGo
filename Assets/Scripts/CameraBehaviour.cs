@@ -10,7 +10,7 @@ public class CameraBehaviour : MonoBehaviour
 
     private void Update()
     {
-        Vector3 position = new Vector3(m_player.transform.position.x, m_height, m_player.transform.position.z - 10);
+        Vector3 position = new Vector3(m_player.transform.position.x, m_height, m_player.transform.position.z - m_distance);
 
         transform.position = position;
     }
