@@ -6,15 +6,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // customer spawn
+    // customer 
 
     [SerializeField] GameObject m_spawnLocation;
-    [SerializeField] GameObject m_customer;
+    public GameObject m_customer;
     [SerializeField] GameObject m_counter;
+    public List<GameObject> m_spawnedCustomers;
+
+    // order counter
 
     CounterTrigger m_counterTrigger;
 
-    public List<GameObject> m_spawnedCustomers;
+    // donuts
+
+    
+
 
     private void Start()
     {
