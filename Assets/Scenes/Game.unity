@@ -187,7 +187,7 @@ MonoBehaviour:
   m_counter: {fileID: 1286445282}
   m_customer: {fileID: 6018385477725965846, guid: ae0ec2f397519f245ba7f46837360216, type: 3}
   m_spawnedCustomers: []
-  m_money: 0
+  m_firstTime: 0
 --- !u!4 &152669612
 Transform:
   m_ObjectHideFlags: 0
@@ -612,6 +612,8 @@ MonoBehaviour:
   m_movementSpeed: 5
   m_holdCapacity: 4
   m_donutsHeld: []
+  m_money: 0
+  m_firstTimeSave: 0
 --- !u!54 &708446332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -838,7 +840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: a
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b08601931627214c908e9984869e253, type: 2}
   m_sharedMaterial: {fileID: -6913645384045482701, guid: 9b08601931627214c908e9984869e253, type: 2}
@@ -932,7 +934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 50, y: -10}
   m_SizeDelta: {x: 451.04, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1197480038
