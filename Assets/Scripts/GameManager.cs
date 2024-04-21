@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
     // customer 
 
     [SerializeField] GameObject m_spawnLocation;
-    public GameObject m_customer;
     [SerializeField] GameObject m_counter;
+    public GameObject m_customer;
     public List<GameObject> m_spawnedCustomers;
 
     // order counter
 
     CounterTrigger m_counterTrigger;
 
-    // donuts
+    // money
 
     
 

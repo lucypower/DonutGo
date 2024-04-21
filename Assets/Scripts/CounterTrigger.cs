@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CounterTrigger : MonoBehaviour
@@ -38,12 +39,18 @@ public class CounterTrigger : MonoBehaviour
 
     public void ServeCustomer()
     {
-        int donutNo = m_playerStatistics.m_donutsHeld.Count - 1;
-        GameObject donut = m_playerStatistics.m_donutsHeld[donutNo];
+        //int donutNo = m_playerStatistics.m_donutsHeld.Count - 1;
+        //GameObject donut = m_playerStatistics.m_donutsHeld[donutNo]
+
+        // gets first item in list, donuts being inserted into list at index 0
+
+        GameObject donut = m_playerStatistics.m_donutsHeld.First(); 
         Transform customerHold = m_customerAI[0].transform.Find("Hold");
 
-        donut.transform.position = customerHold.position; // TODO: Phantom donut, everything working as expected apart from the model remains for the second donut
         donut.transform.parent = customerHold;
+        donut.transform.position = customerHold.position;
+
+        m_playerStatistics.m_money += 10;
 
         m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
         m_customerAI[0].LeaveQueue();
@@ -55,7 +62,6 @@ public class CounterTrigger : MonoBehaviour
         
         m_gameManager.m_spawnedCustomers.Remove(customer);
         m_customerAI.Remove(m_customerAI[0]);
-        //Destroy(customer);
 
         for (int i = 0; i < m_customerAI.Count; i++)
         {
