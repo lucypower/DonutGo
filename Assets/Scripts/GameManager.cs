@@ -17,15 +17,33 @@ public class GameManager : MonoBehaviour
 
     CounterTrigger m_counterTrigger;
 
-    // money
+    // player
 
-    
-
+    PlayerStatistics m_player;
+    [HideInInspector] public int m_firstTime;
 
     private void Start()
     {
         m_counterTrigger = m_counter.GetComponentInChildren<CounterTrigger>();
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerStatistics>();
 
+        int hasPlayed = PlayerPrefs.GetInt("m_firstTime");
+
+        if (hasPlayed == 0)
+        {
+            Debug.Log("first time");
+            PlayerPrefs.SetInt("m_firstTime", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Debug.Log("not first time");
+            Load();
+        }
+
+        // TODO : Need to work out how to load on first save without erroring?
+
+        Save();
         SpawnCustomer();
     }
 
@@ -37,9 +55,40 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTimer(5));
     }
 
+    public void Save() // TODO : Save every x minutes (?) / save on close
+    {
+        if (!m_player.m_firstTimeSave)
+        {
+            m_player.m_firstTimeSave = true;
+        }
+
+        SaveSystem.SavePlayer(m_player);
+        Debug.Log("Save");
+        StartCoroutine(SaveTimer(5));
+    }
+
+    public void Load() // TODO : Load when game loads
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        m_player.m_money = data.m_money;
+        m_player.m_movementSpeed = data.m_movementSpeed;
+        m_player.m_holdCapacity = data.m_holdCapacity;
+        m_player.m_firstTimeSave = data.m_firstTimeSave;
+    }
+
     public IEnumerator SpawnTimer(float time)
     {
         yield return new WaitForSeconds(time);
         SpawnCustomer();
     }
+
+    public IEnumerator SaveTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Save();
+    }
+
+
+    // TODO : Need way to reset game, probably button in settings menu
 }
