@@ -34,7 +34,8 @@ public class DonutTrigger : MonoBehaviour
         int donutToGo = m_donutCounter.m_donuts.Count - 1;
         GameObject donut = m_donutCounter.m_donuts[donutToGo];
 
-        m_playerStatistics.m_donutsHeld.Add(donut);
+        // m_playerStatistics.m_donutsHeld.Add(donut);
+        m_playerStatistics.m_donutsHeld.Insert(0, donut);
 
         Vector3 offset = new Vector3(0, 0.25f * (m_playerStatistics.m_donutsHeld.Count - 1), 0); // TODO: will need to change when a new model is used
 
