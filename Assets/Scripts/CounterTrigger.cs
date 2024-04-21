@@ -28,10 +28,12 @@ public class CounterTrigger : MonoBehaviour
         {
             if (m_gameManager.m_spawnedCustomers.Count != 0)
             {
-                if (m_playerStatistics.m_donutsHeld.Count > 0)
+                if (m_customerAI[0].m_atCounter)
                 {
-                    ServeCustomer();
-                    RemoveCustomer();
+                    if (m_playerStatistics.m_donutsHeld.Count > 0)
+                    {
+                        ServeCustomer();                        
+                    }
                 }
             }
         }
@@ -47,13 +49,22 @@ public class CounterTrigger : MonoBehaviour
         GameObject donut = m_playerStatistics.m_donutsHeld.First(); 
         Transform customerHold = m_customerAI[0].transform.Find("Hold");
 
+        Vector3 offset = new Vector3(0, 0.25f * (m_customerAI[0].m_donutsHeld.Count - 1), 0);
+
         donut.transform.parent = customerHold;
-        donut.transform.position = customerHold.position;
+        donut.transform.position = customerHold.position + offset;
+
+        m_customerAI[0].m_donutsHeld.Add(donut);
+        m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
 
         m_playerStatistics.m_money += 10;
 
-        m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
-        m_customerAI[0].LeaveQueue();
+        if (m_customerAI[0].m_donutsHeld.Count >= m_customerAI[0].m_orderTotal)
+        {
+            m_customerAI[0].LeaveQueue();
+            RemoveCustomer();
+        }
+        
     }
 
     public void RemoveCustomer()

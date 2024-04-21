@@ -12,7 +12,11 @@ public class CustomerAI : MonoBehaviour
 
     Vector3 m_offset;
 
+    [HideInInspector] public bool m_atCounter;
     bool m_inQueue;
+
+    public List<GameObject> m_donutsHeld;
+    public int m_orderTotal;
 
     private void Start()
     {
@@ -23,8 +27,9 @@ public class CustomerAI : MonoBehaviour
         m_leaveLocation = GameObject.FindGameObjectWithTag("LeaveLocation");
 
         m_offset = new Vector3(0, 0, (m_gameManager.m_spawnedCustomers.Count - 1) * 2);
-
         m_inQueue = true;
+
+        m_orderTotal = Random.Range(1, 3);
     }
 
     private void Update() 
@@ -44,12 +49,15 @@ public class CustomerAI : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (transform.position == m_counterLocation.transform.position)
+        {
+            m_atCounter = true;
+        }
     }
 
     public void UpdateQueuePosition()
     {
-        Debug.Log("update queue pos");
-
         m_offset = m_offset + new Vector3(0, 0, -2);
     }
 
