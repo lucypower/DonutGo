@@ -9,7 +9,7 @@ public class CounterTrigger : MonoBehaviour
     PlayerStatistics m_playerStatistics;
 
     [SerializeField] private List<CustomerAI> m_customerAI;
-    
+    bool m_playerNear;
 
     private void Start()
     {
@@ -22,23 +22,6 @@ public class CounterTrigger : MonoBehaviour
         m_customerAI.Add(customer.GetComponent<CustomerAI>());
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (m_gameManager.m_spawnedCustomers.Count != 0)
-            {
-                if (m_customerAI[0].m_atCounter)
-                {
-                    if (m_playerStatistics.m_donutsHeld.Count > 0)
-                    {
-                        ServeCustomer();                        
-                    }
-                }
-            }
-        }
-    }
-
     public void ServeCustomer()
     {
         //int donutNo = m_playerStatistics.m_donutsHeld.Count - 1;
@@ -46,7 +29,7 @@ public class CounterTrigger : MonoBehaviour
 
         // gets first item in list, donuts being inserted into list at index 0
 
-        GameObject donut = m_playerStatistics.m_donutsHeld.First(); 
+        GameObject donut = m_playerStatistics.m_donutsHeld.First();
         Transform customerHold = m_customerAI[0].transform.Find("Hold");
 
         Vector3 offset = new Vector3(0, 0.25f * (m_customerAI[0].m_donutsHeld.Count - 1), 0);
@@ -64,13 +47,13 @@ public class CounterTrigger : MonoBehaviour
             m_customerAI[0].LeaveQueue();
             RemoveCustomer();
         }
-        
+
     }
 
     public void RemoveCustomer()
     {
         GameObject customer = m_gameManager.m_spawnedCustomers[0];
-        
+
         m_gameManager.m_spawnedCustomers.Remove(customer);
         m_customerAI.Remove(m_customerAI[0]);
 
@@ -78,5 +61,49 @@ public class CounterTrigger : MonoBehaviour
         {
             m_customerAI[i].UpdateQueuePosition();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(Timer(1));
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (m_playerNear)
+            {
+                if (m_gameManager.m_spawnedCustomers.Count != 0)
+                {
+                    if (m_customerAI[0].m_atCounter)
+                    {
+                        if (m_playerStatistics.m_donutsHeld.Count > 0)
+                        {
+                            m_playerNear = false;
+                            StartCoroutine(Timer(1));
+                            ServeCustomer();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopCoroutine(Timer(1));
+        }
+    }
+
+    IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        m_playerNear = true;
     }
 }

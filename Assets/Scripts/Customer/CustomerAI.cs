@@ -29,7 +29,7 @@ public class CustomerAI : MonoBehaviour
         m_offset = new Vector3(0, 0, (m_gameManager.m_spawnedCustomers.Count - 1) * 2);
         m_inQueue = true;
 
-        m_orderTotal = Random.Range(1, 3);
+        m_orderTotal = Random.Range(1, 4);
     }
 
     private void Update() 
