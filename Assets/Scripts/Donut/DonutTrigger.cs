@@ -37,7 +37,7 @@ public class DonutTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(Timer(1));
+            StartCoroutine(Timer(.5f));
         }
     }
 
@@ -52,7 +52,7 @@ public class DonutTrigger : MonoBehaviour
                     if (m_playerStatistics.m_donutsHeld.Count < m_playerStatistics.m_holdCapacity)
                     {
                         m_playerNear = false;
-                        StartCoroutine(Timer(1));
+                        StartCoroutine(Timer(.75f));
                         DonutPickup();
                     }
                 }
@@ -64,7 +64,7 @@ public class DonutTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StopCoroutine(Timer(1));
+            StopCoroutine(Timer(.75f));
         }
     }
 

@@ -67,7 +67,7 @@ public class CounterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(Timer(1));
+            StartCoroutine(Timer(.5f));
         }
     }
 
@@ -84,7 +84,7 @@ public class CounterTrigger : MonoBehaviour
                         if (m_playerStatistics.m_donutsHeld.Count > 0)
                         {
                             m_playerNear = false;
-                            StartCoroutine(Timer(1));
+                            StartCoroutine(Timer(.75f));
                             ServeCustomer();
                         }
                     }
@@ -97,7 +97,7 @@ public class CounterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StopCoroutine(Timer(1));
+            StopCoroutine(Timer(.75f));
         }
     }
 
