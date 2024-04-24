@@ -26,8 +26,11 @@ public class PlayerMovement : MonoBehaviour
         
         //rotation
 
-        Vector3 rotateDirection = Vector3.RotateTowards(transform.forward, moveDirection, 10, 0);
+        if (input.x != 0 || input.y != 0)
+        {
+            Vector3 rotateDirection = Vector3.RotateTowards(transform.forward, moveDirection, 10, 0);
 
-        m_model.transform.rotation = Quaternion.LookRotation(rotateDirection);
+            m_model.transform.rotation = Quaternion.LookRotation(rotateDirection);
+        }
     }
 }

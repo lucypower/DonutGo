@@ -20,7 +20,7 @@ public class DonutCounter : MonoBehaviour
 
         Instantiate(m_donut, m_spawnLocation.transform.position + offset, Quaternion.identity);
 
-        StartCoroutine(SpawnTimer(5));
+        StartCoroutine(SpawnTimer(2));
     }
 
     public IEnumerator SpawnTimer(float waitTime)

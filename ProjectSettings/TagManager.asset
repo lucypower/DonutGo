@@ -8,6 +8,7 @@ TagManager:
   - Counter
   - DonutCounter
   - LeaveLocation
+  - LeaveLocation2
   layers:
   - Default
   - TransparentFX

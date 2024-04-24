@@ -9,24 +9,12 @@ public class DonutTrigger : MonoBehaviour
 
     DonutCounter m_donutCounter;
 
+    bool m_playerNear;
+
     private void Start()
     {
         m_playerStatistics = m_playerHold.GetComponentInParent<PlayerStatistics>();
         m_donutCounter = GetComponentInParent<DonutCounter>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")) // TODO: update to take holding capacity into account
-        {
-            if (m_donutCounter.m_donuts.Count > 0)
-            {
-                if (m_playerStatistics.m_donutsHeld.Count < m_playerStatistics.m_holdCapacity)
-                {
-                    DonutPickup();
-                }
-            }
-        }
     }
 
     public void DonutPickup()
@@ -43,5 +31,46 @@ public class DonutTrigger : MonoBehaviour
         donut.transform.position = m_playerHold.transform.position + offset;
 
         m_donutCounter.m_donuts.Remove(donut);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(Timer(.5f));
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (m_playerNear)
+            {
+                if (m_donutCounter.m_donuts.Count > 0)
+                {
+                    if (m_playerStatistics.m_donutsHeld.Count < m_playerStatistics.m_holdCapacity)
+                    {
+                        m_playerNear = false;
+                        StartCoroutine(Timer(.75f));
+                        DonutPickup();
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopCoroutine(Timer(.75f));
+        }
+    }
+
+    IEnumerator Timer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        m_playerNear = true;
     }
 }
