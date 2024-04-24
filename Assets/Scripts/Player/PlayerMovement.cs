@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,28 +10,37 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject m_model;
 
     PlayerStatistics m_statistics;
+    Rigidbody m_rigidbody;
+    Vector2 m_input;
 
     private void Start()
     {
         m_statistics = GetComponent<PlayerStatistics>();
+        m_rigidbody = GetComponent<Rigidbody>();
+
     }
 
     private void Update()
     {
-        //movement
+        //old movement
+        //transform.Translate(m_statistics.m_movementSpeed * Time.deltaTime * moveDirection);
 
-        Vector2 input = m_moveJoystick.action.ReadValue<Vector2>();
-        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
-
-        transform.Translate(m_statistics.m_movementSpeed * Time.deltaTime * moveDirection);
+        m_input = m_moveJoystick.action.ReadValue<Vector2>();
+        Vector3 moveDirection = new Vector3(m_input.x, 0, m_input.y);
         
         //rotation
 
-        if (input.x != 0 || input.y != 0)
+        if (m_input.x != 0 || m_input.y != 0)
         {
             Vector3 rotateDirection = Vector3.RotateTowards(transform.forward, moveDirection, 10, 0);
 
             m_model.transform.rotation = Quaternion.LookRotation(rotateDirection);
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+        m_rigidbody.velocity = new Vector3(m_input.x * m_statistics.m_movementSpeed, m_rigidbody.velocity.y, m_input.y * m_statistics.m_movementSpeed);
     }
 }
