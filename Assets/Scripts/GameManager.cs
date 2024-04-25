@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour
             Load();
         }
 
-        // TODO : Need to work out how to load on first save without erroring?
-
         Save();
         SpawnCustomer();
     }
@@ -55,7 +53,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTimer(5));
     }
 
-    public void Save() // TODO : Save every x minutes (?) / save on close
+    public void Save()
     {
         if (!m_player.m_firstTimeSave)
         {
@@ -67,7 +65,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SaveTimer(5));
     }
 
-    public void Load() // TODO : Load when game loads
+    public void Load()
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
