@@ -5,10 +5,12 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     UIManager m_uiManager;
+    PlayerStatistics m_playerStatistics;
 
     private void Start()
     {
         m_uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
+        m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,5 +27,15 @@ public class UpgradeManager : MonoBehaviour
         {
             m_uiManager.UpgradeMenu(false);
         }
+    }
+
+    public void UpgradeWalk()
+    {
+
+    }
+
+    public void UpgradeHold()
+    {
+
     }
 }

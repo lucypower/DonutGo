@@ -10,8 +10,7 @@ public class UIManager : MonoBehaviour
     // upgrades
 
     [SerializeField] GameObject m_upgradeMenu;
-    [SerializeField] GameObject m_playerUpgrades;
-    [SerializeField] GameObject m_employeeUpgrades;
+    [SerializeField] GameObject[] m_upgradeScreens;
 
     PlayerStatistics m_playerStatistics;
 
@@ -45,13 +44,13 @@ public class UIManager : MonoBehaviour
 
     public void PlayerUpgrades()
     {
-        m_playerUpgrades.SetActive(true);
-        m_employeeUpgrades.SetActive(false);
+        m_upgradeScreens[0].SetActive(true);
+        m_upgradeScreens[1].SetActive(false);
     }
 
     public void EmployeeUpgrades()
     {
-        m_employeeUpgrades.SetActive(true);
-        m_playerUpgrades.SetActive(false);
+        m_upgradeScreens[1].SetActive(true);
+        m_upgradeScreens[0].SetActive(false);
     }
 }
