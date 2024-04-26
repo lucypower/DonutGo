@@ -19,16 +19,16 @@ public class UIManager : MonoBehaviour
     PlayerStatistics m_playerStatistics;
     EmployeeStatistics m_employeeStatistics;
 
-    private void Awake()
-    {
-        //FirstUpgradeUI();
-    }
-
     private void Start()
     {
         m_playerScreenActive = true;
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
         m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
+
+        UpdateUpgradeUI("Walk", m_playerStatistics.m_walkLevel, true);
+        UpdateUpgradeUI("Hold", m_playerStatistics.m_holdLevel, true);
+        UpdateUpgradeUI("Walk", m_employeeStatistics.m_walkLevel, false);
+        UpdateUpgradeUI("Walk", m_employeeStatistics.m_holdLevel, false);
     }
 
     private void Update()

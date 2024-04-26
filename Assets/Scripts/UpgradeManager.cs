@@ -6,7 +6,7 @@ public class UpgradeManager : MonoBehaviour
 {
     UIManager m_uiManager;
     PlayerStatistics m_playerStatistics;
-    EmployeeStatistics m_employeeStatistics; // TODO: Need to rewrite for multiple ai employees
+    public EmployeeStatistics m_employeeStatistics; // TODO: Need to rewrite for multiple ai employees
 
     private void Start()
     {
@@ -35,27 +35,33 @@ public class UpgradeManager : MonoBehaviour
 
     #endregion
 
-    public void Upgrade(string upgrade)
+    public void Upgrade(string upgrade) // TODO: Need UI to display cost, maybe on the button, along with red/green colour changes 
     {
-        switch (upgrade)
+        switch (upgrade) // TODO: Need to deduct money on purchase
         {
             case "Walk":
 
                 if (m_uiManager.m_playerScreenActive)
                 {
-                    if (m_playerStatistics.m_walkLevel < 5)
+                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100))
                     {
-                        m_playerStatistics.m_walkLevel++;
-                        m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_walkLevel, true);
-                    }
+                        if (m_playerStatistics.m_walkLevel < 5)
+                        {
+                            m_playerStatistics.m_walkLevel++;
+                            m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_walkLevel, true);
+                        }
+                    }                    
                 }
                 else
                 {
-                    if (m_employeeStatistics.m_walkLevel < 5)
+                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_walkLevel, 3) * 100))
                     {
-                        m_employeeStatistics.m_walkLevel++;
-                        m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_walkLevel, false);
-                    }
+                        if (m_employeeStatistics.m_walkLevel < 5)
+                        {
+                            m_employeeStatistics.m_walkLevel++;
+                            m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_walkLevel, false);
+                        }
+                    }                    
                 }
 
                 break;
@@ -64,19 +70,25 @@ public class UpgradeManager : MonoBehaviour
 
                 if (m_uiManager.m_playerScreenActive)
                 {
-                    if (m_playerStatistics.m_holdLevel < 5)
+                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100))
                     {
-                        m_playerStatistics.m_holdLevel++;
-                        m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_holdLevel, true);
-                    }
+                        if (m_playerStatistics.m_holdLevel < 5)
+                        {
+                            m_playerStatistics.m_holdLevel++;
+                            m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_holdLevel, true);
+                        }
+                    }                        
                 }
                 else
                 {
-                    if (m_employeeStatistics.m_holdLevel < 5)
+                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_holdLevel, 3) * 100))
                     {
-                        m_employeeStatistics.m_holdLevel++;
-                        m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_holdLevel, false);
-                    }
+                        if (m_employeeStatistics.m_holdLevel < 5)
+                        {
+                            m_employeeStatistics.m_holdLevel++;
+                            m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_holdLevel, false);
+                        }
+                    }                        
                 }
 
                 break;
