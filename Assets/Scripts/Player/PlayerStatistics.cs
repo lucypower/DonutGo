@@ -9,5 +9,10 @@ public class PlayerStatistics : MonoBehaviour
     public List<GameObject> m_donutsHeld;
     public int m_money;
 
+    // upgrades
+
+    public int m_walkLevel;
+    public int m_holdLevel;
+
     public bool m_firstTimeSave;
 }

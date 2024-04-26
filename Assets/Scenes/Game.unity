@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -859,10 +859,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e62814a5df1d5c4580c791eef224412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementSpeed: 5
+  m_movementSpeed: 0
   m_holdCapacity: 4
   m_donutsHeld: []
   m_money: 0
+  m_walkLevel: 1
+  m_holdLevel: 1
   m_firstTimeSave: 0
 --- !u!114 &376052818
 MonoBehaviour:
@@ -1305,7 +1307,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 444077605}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334250436}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hold
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &444077605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2241,7 +2255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b08601931627214c908e9984869e253, type: 2}
   m_sharedMaterial: {fileID: -6913645384045482701, guid: 9b08601931627214c908e9984869e253, type: 2}
@@ -2743,10 +2757,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e62814a5df1d5c4580c791eef224412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementSpeed: 5
+  m_movementSpeed: 0
   m_holdCapacity: 4
   m_donutsHeld: []
   m_money: 0
+  m_walkLevel: 0
+  m_holdLevel: 0
   m_firstTimeSave: 0
 --- !u!54 &708446332
 Rigidbody:
@@ -3541,7 +3557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b08601931627214c908e9984869e253, type: 2}
   m_sharedMaterial: {fileID: -6913645384045482701, guid: 9b08601931627214c908e9984869e253, type: 2}
@@ -3701,7 +3717,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 929012435}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334250436}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Walk
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &929012435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3823,7 +3851,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 960139507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334250436}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Walk
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &960139507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4029,7 +4069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b08601931627214c908e9984869e253, type: 2}
   m_sharedMaterial: {fileID: -6913645384045482701, guid: 9b08601931627214c908e9984869e253, type: 2}
@@ -4447,7 +4487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b08601931627214c908e9984869e253, type: 2}
   m_sharedMaterial: {fileID: -6913645384045482701, guid: 9b08601931627214c908e9984869e253, type: 2}
@@ -6737,10 +6777,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moneyText: {fileID: 1140082736}
+  m_playerUpgrades:
+  - {fileID: 613398273}
+  - {fileID: 1048786501}
+  m_employeeUpgrades:
+  - {fileID: 964019150}
+  - {fileID: 898598781}
   m_upgradeMenu: {fileID: 792148676}
   m_upgradeScreens:
   - {fileID: 983255298}
   - {fileID: 1674296283}
+  m_playerScreenActive: 0
 --- !u!1 &1857750034
 GameObject:
   m_ObjectHideFlags: 0
@@ -7436,7 +7483,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2021728913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 334250436}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hold
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2021728913
 MonoBehaviour:
   m_ObjectHideFlags: 0

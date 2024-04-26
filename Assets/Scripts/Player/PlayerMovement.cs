@@ -41,6 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_rigidbody.velocity = new Vector3(m_input.x * m_statistics.m_movementSpeed, m_rigidbody.velocity.y, m_input.y * m_statistics.m_movementSpeed);
+        m_rigidbody.velocity = new Vector3(m_input.x * (m_statistics.m_walkLevel + 2), m_rigidbody.velocity.y, m_input.y * (m_statistics.m_walkLevel + 2));
     }
 }
