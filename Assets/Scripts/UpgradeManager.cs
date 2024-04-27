@@ -37,31 +37,37 @@ public class UpgradeManager : MonoBehaviour
 
     public void Upgrade(string upgrade) // TODO: Need UI to display cost, maybe on the button, along with red/green colour changes 
     {
+        float upgradeCost;
+
         switch (upgrade) // TODO: Need to deduct money on purchase
         {
             case "Walk":
 
                 if (m_uiManager.m_playerScreenActive)
-                {
-                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100))
+                {                    
+                    if (m_playerStatistics.m_walkLevel < 5)
                     {
-                        if (m_playerStatistics.m_walkLevel < 5)
+                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100))
                         {
+                            RemoveMoney(Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100);
                             m_playerStatistics.m_walkLevel++;
                             m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_walkLevel, true);
-                        }
-                    }                    
+                        }                        
+                    }
                 }
                 else
-                {
-                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_walkLevel, 3) * 100))
+                {                    
+                    if (m_employeeStatistics.m_walkLevel < 5)
                     {
-                        if (m_employeeStatistics.m_walkLevel < 5)
+                        upgradeCost = Mathf.Pow(m_employeeStatistics.m_walkLevel, 3) * 100;
+
+                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_walkLevel, 3) * 100))
                         {
+                            RemoveMoney(Mathf.Pow(m_employeeStatistics.m_walkLevel, 3) * 100);
                             m_employeeStatistics.m_walkLevel++;
                             m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_walkLevel, false);
-                        }
-                    }                    
+                        }                        
+                    }
                 }
 
                 break;
@@ -70,25 +76,27 @@ public class UpgradeManager : MonoBehaviour
 
                 if (m_uiManager.m_playerScreenActive)
                 {
-                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100))
+                    if (m_playerStatistics.m_holdLevel < 5)
                     {
-                        if (m_playerStatistics.m_holdLevel < 5)
+                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100))
                         {
+                            RemoveMoney(Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100);
                             m_playerStatistics.m_holdLevel++;
                             m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_holdLevel, true);
-                        }
-                    }                        
+                        }                        
+                    }                                         
                 }
                 else
-                {
-                    if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_holdLevel, 3) * 100))
+                {                    
+                    if (m_employeeStatistics.m_holdLevel < 5)
                     {
-                        if (m_employeeStatistics.m_holdLevel < 5)
+                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_employeeStatistics.m_holdLevel, 3) * 100))
                         {
+                            RemoveMoney(Mathf.Pow(m_employeeStatistics.m_holdLevel, 3) * 100);
                             m_employeeStatistics.m_holdLevel++;
                             m_uiManager.UpdateUpgradeUI(upgrade, m_employeeStatistics.m_holdLevel, false);
-                        }
-                    }                        
+                        }                        
+                    }
                 }
 
                 break;
@@ -96,5 +104,10 @@ public class UpgradeManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void RemoveMoney(float money)
+    {
+        m_playerStatistics.m_money -= (int)money;
     }
 }

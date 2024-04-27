@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
         UpdateUpgradeUI("Walk", m_playerStatistics.m_walkLevel, true);
         UpdateUpgradeUI("Hold", m_playerStatistics.m_holdLevel, true);
         UpdateUpgradeUI("Walk", m_employeeStatistics.m_walkLevel, false);
-        UpdateUpgradeUI("Walk", m_employeeStatistics.m_holdLevel, false);
+        UpdateUpgradeUI("Hold", m_employeeStatistics.m_holdLevel, false);
     }
 
     private void Update()
