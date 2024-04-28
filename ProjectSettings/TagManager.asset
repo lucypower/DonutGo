@@ -11,6 +11,7 @@ TagManager:
   - LeaveLocation2
   - Canvas
   - Employee
+  - UpgradeManager
   layers:
   - Default
   - TransparentFX

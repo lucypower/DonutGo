@@ -9,6 +9,7 @@ public class EmployeeAI : MonoBehaviour
 
     DonutCounter m_donutCounter;
     EmployeeStatistics m_statistics;
+    GameManager m_gameManager;
 
     private NavMeshAgent m_agent;
     [SerializeField] private GameObject m_donutCounterPickup;
@@ -23,6 +24,7 @@ public class EmployeeAI : MonoBehaviour
     private void Start()
     {
         m_donutCounter = GameObject.FindGameObjectWithTag("DonutCounter").GetComponent<DonutCounter>();
+        m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_statistics = GetComponent<EmployeeStatistics>();
         m_agent = GetComponent<NavMeshAgent>();
 
@@ -30,6 +32,14 @@ public class EmployeeAI : MonoBehaviour
         m_customerCounter = GameObject.Find("CounterTrigger");
 
         //m_state = AIState.IDLE;
+    }
+
+    private void Update()
+    {
+        m_statistics.m_walkLevel = m_gameManager.m_debugEmployee.m_walkLevel;
+        m_statistics.m_holdLevel = m_gameManager.m_debugEmployee.m_holdLevel;
+
+        m_agent.speed = m_gameManager.m_debugEmployee.m_walkLevel + 1;
     }
 
     private void FixedUpdate()
@@ -68,7 +78,7 @@ public class EmployeeAI : MonoBehaviour
             m_agent.SetDestination(m_donutCounterPickup.transform.position);
         }
 
-        if (m_statistics.m_donutsHeld.Count == m_statistics.m_holdCapacity)
+        if (m_statistics.m_donutsHeld.Count == (m_gameManager.m_debugEmployee.m_holdLevel * 2))
         {
             m_agent.SetDestination(m_customerCounter.transform.position);
         }
