@@ -10,6 +10,7 @@ TagManager:
   - LeaveLocation
   - LeaveLocation2
   - Canvas
+  - Employee
   layers:
   - Default
   - TransparentFX

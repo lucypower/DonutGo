@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
         m_player.m_movementSpeed = data.m_movementSpeed;
         m_player.m_holdCapacity = data.m_holdCapacity;
         m_player.m_firstTimeSave = data.m_firstTimeSave;
+
+        m_player.m_walkLevel = data.m_walkLevel;
+        m_player.m_holdLevel = data.m_holdLevel;
     }
 
     public IEnumerator SpawnTimer(float time)

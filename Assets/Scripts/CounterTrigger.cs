@@ -7,6 +7,7 @@ public class CounterTrigger : MonoBehaviour
 {
     GameManager m_gameManager;
     PlayerStatistics m_playerStatistics;
+    EmployeeStatistics m_employeeStatistics;
 
     [SerializeField] private List<CustomerAI> m_customerAI;
     bool m_playerNear;
@@ -15,6 +16,7 @@ public class CounterTrigger : MonoBehaviour
     {
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
+        m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
     }
 
     public void UpdateCustomerList(GameObject customer)
@@ -22,32 +24,44 @@ public class CounterTrigger : MonoBehaviour
         m_customerAI.Add(customer.GetComponent<CustomerAI>());
     }
 
-    public void ServeCustomer()
+    public void ServeCustomer(bool player)
     {
-        //int donutNo = m_playerStatistics.m_donutsHeld.Count - 1;
-        //GameObject donut = m_playerStatistics.m_donutsHeld[donutNo]
-
         // gets first item in list, donuts being inserted into list at index 0
-
-        GameObject donut = m_playerStatistics.m_donutsHeld.First();
+        
         Transform customerHold = m_customerAI[0].transform.Find("Hold");
 
         Vector3 offset = new Vector3(0, 0.25f * (m_customerAI[0].m_donutsHeld.Count - 1), 0);
 
-        donut.transform.parent = customerHold;
-        donut.transform.position = customerHold.position + offset;
+        if (player)
+        {
+            GameObject donut = m_playerStatistics.m_donutsHeld.First();
 
-        m_customerAI[0].m_donutsHeld.Add(donut);
-        m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
+            donut.transform.parent = customerHold;
+            donut.transform.position = customerHold.position + offset;
+        
+            m_customerAI[0].m_donutsHeld.Add(donut);
+            m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
+        }
+        else
+        {
+            GameObject donut = m_employeeStatistics.m_donutsHeld.First();
 
-        m_playerStatistics.m_money += 10;
+            donut.transform.parent = customerHold;
+            donut.transform.position = customerHold.position + offset;
+
+            m_customerAI[0].m_donutsHeld.Add(donut);
+            m_employeeStatistics.m_donutsHeld.Remove(m_employeeStatistics.m_donutsHeld[0]);
+        }
+
+        int money = Random.Range(5, 16);
+
+        m_playerStatistics.m_money += money;
 
         if (m_customerAI[0].m_donutsHeld.Count >= m_customerAI[0].m_orderTotal)
         {
             m_customerAI[0].LeaveQueue();
             RemoveCustomer();
         }
-
     }
 
     public void RemoveCustomer()
@@ -65,7 +79,7 @@ public class CounterTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
             StartCoroutine(Timer(.5f));
         }
@@ -85,7 +99,26 @@ public class CounterTrigger : MonoBehaviour
                         {
                             m_playerNear = false;
                             StartCoroutine(Timer(.75f));
-                            ServeCustomer();
+                            ServeCustomer(true);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (other.CompareTag("Employee"))
+        {
+            if (m_playerNear)
+            {
+                if (m_gameManager.m_spawnedCustomers.Count != 0)
+                {
+                    if (m_customerAI[0].m_atCounter)
+                    {
+                        if (m_employeeStatistics.m_donutsHeld.Count > 0)
+                        {
+                            m_playerNear = false;
+                            StartCoroutine(Timer(.75f));
+                            ServeCustomer(false);
                         }
                     }
                 }
@@ -95,7 +128,7 @@ public class CounterTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
             StopCoroutine(Timer(.75f));
         }
