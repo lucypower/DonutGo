@@ -61,10 +61,13 @@ public class GameManager : MonoBehaviour
 
     public void SpawnCustomer()
     {
-        m_spawnedCustomers.Add(Instantiate(m_customer, m_spawnLocation.transform.position, Quaternion.identity));
-        m_counterTrigger.UpdateCustomerList(m_spawnedCustomers.Last());
+        if (m_spawnedCustomers.Count < 10)
+        {
+            m_spawnedCustomers.Add(Instantiate(m_customer, m_spawnLocation.transform.position, Quaternion.identity));
+            m_counterTrigger.UpdateCustomerList(m_spawnedCustomers.Last());
+        }        
 
-        StartCoroutine(SpawnTimer(5));
+        StartCoroutine(SpawnTimer(11 - m_upgradeManager.m_customerCounterLevel));
     }
 
     public void SpawnEmployee()
@@ -100,6 +103,8 @@ public class GameManager : MonoBehaviour
         m_upgradeManager.m_donutCounterLevel = data.m_donutCounterLevel;
         m_upgradeManager.m_donutCapacityLevel = data.m_donutCapacityLevel;
         m_upgradeManager.m_donutSpawnTimeLevel = data.m_donutSpawnTimeLevel;
+
+        m_upgradeManager.m_customerCounterLevel = data.m_customerCounterLevel;
     }
 
     public IEnumerator SpawnTimer(float time)
