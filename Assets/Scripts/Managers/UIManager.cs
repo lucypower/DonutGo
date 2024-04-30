@@ -151,11 +151,21 @@ public class UIManager : MonoBehaviour
 
                 m_upgradeText[0].text = "Level " + level + "\nCosts " + money;
 
+                if (level == 10)
+                {
+                    m_upgradeText[0].text = "Max Upgrades";
+                }
+
                 break;
 
             case "Customer":
 
                 m_upgradeText[1].text = "Level " + level + "\nCosts " + money;
+
+                if (level == 10)
+                {
+                    m_upgradeText[1].text = "Max Upgrades";
+                }
 
                 break;
         }

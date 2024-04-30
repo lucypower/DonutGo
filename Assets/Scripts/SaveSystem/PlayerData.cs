@@ -24,6 +24,8 @@ public class PlayerData
     public int m_donutCapacityLevel;
     public int m_donutSpawnTimeLevel;
 
+    public int m_customerCounterLevel;
+
     public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade)
     {
         // player
@@ -44,5 +46,7 @@ public class PlayerData
         m_donutCounterLevel = upgrade.m_donutCounterLevel;
         m_donutCapacityLevel = upgrade.m_donutCapacityLevel;
         m_donutSpawnTimeLevel = upgrade.m_donutSpawnTimeLevel;
+
+        m_customerCounterLevel = upgrade.m_customerCounterLevel;
     }
 }

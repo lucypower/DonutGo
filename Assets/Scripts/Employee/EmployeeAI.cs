@@ -78,7 +78,7 @@ public class EmployeeAI : MonoBehaviour
             m_agent.SetDestination(m_donutCounterPickup.transform.position);
         }
 
-        if (m_statistics.m_donutsHeld.Count == (m_gameManager.m_debugEmployee.m_holdLevel * 2))
+        if (m_statistics.m_donutsHeld.Count == (m_gameManager.m_debugEmployee.m_holdLevel * 2) || m_donutCounter.m_donuts.Count == 0)
         {
             m_agent.SetDestination(m_customerCounter.transform.position);
         }
