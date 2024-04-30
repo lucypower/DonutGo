@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class CookingTrigger : MonoBehaviour
 {
-    public CookingStation m_cooker;
-    public PlayerStatistics m_playerStats;
-    public EmployeeStatistics m_employeeStats;
+    private CookingStation m_cooker;
+    private PlayerStatistics m_playerStats;
+    private EmployeeStatistics m_employeeStats;
 
     [SerializeField] private GameObject m_playerHold;
+    [SerializeField] private Transform m_uncookedDonutHold;
 
     private bool m_playerNear;
 
     private void Start()
     {
-        m_cooker = GetComponentInParent<CookingStation>();
+        Transform parent = transform.parent;
+
+        m_cooker = parent.Find("CookingCounter").GetComponent<CookingStation>();
         m_playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
     }
 
@@ -56,7 +59,7 @@ public class CookingTrigger : MonoBehaviour
                     CollectCooked(false);
                     RestartCoroutine();
                 }
-                else if (m_employeeStats.m_donutTypeHeld == "u")
+                else if (m_employeeStats.m_donutTypeHeld == "u") // TODO: Stop cooked going back through
                 {
                     DepositUncooked(false);
                     RestartCoroutine();
@@ -82,8 +85,6 @@ public class CookingTrigger : MonoBehaviour
 
             Vector3 offset = new Vector3(0, 0.25f * (m_playerStats.m_donutsHeld.Count -1), 0);
 
-            Transform hold = m_playerStats.transform.Find("PlayerHold");
-
             donut.transform.parent = m_playerHold.transform;
             donut.transform.position = m_playerHold.transform.position + offset;
 
@@ -108,15 +109,14 @@ public class CookingTrigger : MonoBehaviour
 
     public void DepositUncooked(bool isPlayer)
     {
-        Transform uncooked = transform.parent.Find("UncookedDonutHold");
         Vector3 offset = new Vector3(0, 0.25f * (m_cooker.m_uncookedDonuts.Count - 1), 0);
 
         if (isPlayer)
         {
             GameObject donut = m_playerStats.m_donutsHeld.First();
 
-            donut.transform.parent = uncooked;
-            donut.transform.position = uncooked.position + offset;
+            donut.transform.parent = m_uncookedDonutHold;
+            donut.transform.position = m_uncookedDonutHold.position + offset;
 
             m_cooker.m_uncookedDonuts.Add(donut);
             m_playerStats.m_donutsHeld.Remove(m_playerStats.m_donutsHeld[0]);
@@ -130,8 +130,8 @@ public class CookingTrigger : MonoBehaviour
         {
             GameObject donut = m_employeeStats.m_donutsHeld.First();
 
-            donut.transform.parent = uncooked;
-            donut.transform.position = uncooked.position + offset;
+            donut.transform.parent = m_uncookedDonutHold;
+            donut.transform.position = m_uncookedDonutHold.position + offset;
 
             m_cooker.m_uncookedDonuts.Add(donut);
             m_employeeStats.m_donutsHeld.Remove(m_employeeStats.m_donutsHeld[0]);

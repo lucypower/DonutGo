@@ -11,7 +11,8 @@ public class CookingStation : MonoBehaviour
     public List<GameObject> m_uncookedDonuts;
     public List<GameObject> m_cookedDonuts;
 
-    [SerializeField] Material m_cookedDonut;
+    [SerializeField] private Material m_cookedDonut;
+    [SerializeField] private Transform m_cookedDonutHold;
 
     public bool m_cookNext;
 
@@ -27,8 +28,8 @@ public class CookingStation : MonoBehaviour
     {
         if (m_cookNext && m_uncookedDonuts.Count > 0)
         {
-            RestartCoroutine();
             CookDonut();
+            RestartCoroutine();
         }
     }
 
@@ -40,12 +41,11 @@ public class CookingStation : MonoBehaviour
         m_uncookedDonuts.Remove(donut);
         m_cookedDonuts.Add(donut);
 
-        Transform hold = transform.Find("CookedDonutHold");
         Vector3 offset = new Vector3(0, 0.25f * (m_cookedDonuts.Count - 1), 0);
 
         donut.GetComponent<Renderer>().material = m_cookedDonut;
-        donut.transform.parent = hold;
-        donut.transform.position = hold.position + offset;
+        donut.transform.parent = m_cookedDonutHold;
+        donut.transform.position = m_cookedDonutHold.position + offset;
     }
 
     IEnumerator Timer(float time)
