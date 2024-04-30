@@ -6,22 +6,27 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text m_moneyText;
     PlayerStatistics m_playerStatistics;
     GameManager m_gameManager;
+    UpgradeManager m_upgradeManager;
 
-    // upgrades
+    [Header("General Shop")]
+
+    [SerializeField] TMP_Text m_moneyText;
+    [SerializeField] GameObject m_upgradeMenu;
+    [SerializeField] GameObject[] m_upgradeScreens;
+    public bool m_playerScreenActive;
+    
+    [Header("Shop Upgrades")]
 
     [SerializeField] TMP_Text[] m_playerUpgradeLevel;
     [SerializeField] TMP_Text[] m_employeeUpgradeLevel;
     [SerializeField] TMP_Text[] m_playerUpgradeCost;
     [SerializeField] TMP_Text[] m_employeeUpgradeCost;
 
-    [SerializeField] GameObject m_upgradeMenu;
-    [SerializeField] GameObject[] m_upgradeScreens;
-    public bool m_playerScreenActive;
+    [Header("Station Upgrades")]
 
-    // popup menus
+    [SerializeField] TMP_Text[] m_upgradeText;
 
 
     private void Start()
@@ -29,6 +34,7 @@ public class UIManager : MonoBehaviour
         m_playerScreenActive = true;
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        m_upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
 
         FirstUpgradeUI();
     }
@@ -72,13 +78,16 @@ public class UIManager : MonoBehaviour
 
     public void FirstUpgradeUI()
     {
-        UpdateUpgradeUI("Walk", m_playerStatistics.m_walkLevel, true);
-        UpdateUpgradeUI("Hold", m_playerStatistics.m_holdLevel, true);
-        UpdateUpgradeUI("Walk", m_gameManager.m_debugEmployee.m_walkLevel, false);
-        UpdateUpgradeUI("Hold", m_gameManager.m_debugEmployee.m_holdLevel, false);
+        UpdateShopUI("Walk", m_playerStatistics.m_walkLevel, true);
+        UpdateShopUI("Hold", m_playerStatistics.m_holdLevel, true);
+        UpdateShopUI("Walk", m_gameManager.m_debugEmployee.m_walkLevel, false);
+        UpdateShopUI("Hold", m_gameManager.m_debugEmployee.m_holdLevel, false);
+
+        UpdateUpgradeUI("Donut", m_upgradeManager.m_donutCounterLevel, m_upgradeManager.m_donutCounterLevel * 1000);
+        UpdateUpgradeUI("Customer", m_upgradeManager.m_customerCounterLevel, m_upgradeManager.m_customerCounterLevel * 1000);
     }
 
-    public void UpdateUpgradeUI(string upgrade, int level, bool player)
+    public void UpdateShopUI(string upgrade, int level, bool player)
     {
         switch (upgrade)
         {
@@ -131,6 +140,24 @@ public class UIManager : MonoBehaviour
                 }
 
             break;
+        }
+    }
+
+    public void UpdateUpgradeUI(string station, int level, int money)
+    {
+        switch (station)
+        {
+            case "Donut":
+
+                m_upgradeText[0].text = "Level " + level + "\nCosts " + money;
+
+                break;
+
+            case "Customer":
+
+                m_upgradeText[1].text = "Level " + level + "\nCosts " + money;
+
+                break;
         }
     }
 }

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_employee;
 
     public EmployeeStatistics m_debugEmployee;
+    [SerializeField] UpgradeManager m_upgradeManager;
 
     private void Start()
     {
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
             m_player.m_firstTimeSave = true;
         }
 
-        SaveSystem.SavePlayer(m_player, m_debugEmployee);
+        SaveSystem.SavePlayer(m_player, m_debugEmployee, m_upgradeManager);
         Debug.Log("Save");
         StartCoroutine(SaveTimer(5));
     }
@@ -95,6 +96,10 @@ public class GameManager : MonoBehaviour
         m_debugEmployee.m_walkLevel = data.m_employeeWalkLevel;
         m_debugEmployee.m_holdLevel = data.m_employeeHoldLevel;
         m_debugEmployee.m_numOfEmployees = data.m_numOfEmployees;
+
+        m_upgradeManager.m_donutCounterLevel = data.m_donutCounterLevel;
+        m_upgradeManager.m_donutCapacityLevel = data.m_donutCapacityLevel;
+        m_upgradeManager.m_donutSpawnTimeLevel = data.m_donutSpawnTimeLevel;
     }
 
     public IEnumerator SpawnTimer(float time)

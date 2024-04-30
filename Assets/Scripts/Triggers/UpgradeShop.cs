@@ -51,7 +51,7 @@ public class UpgradeShop : MonoBehaviour
 
                             m_playerStatistics.m_walkLevel++;
 
-                            m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_walkLevel, true);                       
+                            m_uiManager.UpdateShopUI(upgrade, m_playerStatistics.m_walkLevel, true);                       
                         }                        
                     }
                 }
@@ -65,7 +65,7 @@ public class UpgradeShop : MonoBehaviour
 
                             m_gameManager.m_debugEmployee.m_walkLevel++;
 
-                            m_uiManager.UpdateUpgradeUI(upgrade, m_gameManager.m_debugEmployee.m_walkLevel, false);
+                            m_uiManager.UpdateShopUI(upgrade, m_gameManager.m_debugEmployee.m_walkLevel, false);
                         }                        
                     }
                 }
@@ -82,7 +82,7 @@ public class UpgradeShop : MonoBehaviour
                         {
                             RemoveMoney(Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100);
                             m_playerStatistics.m_holdLevel++;
-                            m_uiManager.UpdateUpgradeUI(upgrade, m_playerStatistics.m_holdLevel, true);
+                            m_uiManager.UpdateShopUI(upgrade, m_playerStatistics.m_holdLevel, true);
                         }                        
                     }
                 }
@@ -96,7 +96,7 @@ public class UpgradeShop : MonoBehaviour
 
                             m_gameManager.m_debugEmployee.m_holdLevel++;
 
-                            m_uiManager.UpdateUpgradeUI(upgrade, m_gameManager.m_debugEmployee.m_holdLevel, false);
+                            m_uiManager.UpdateShopUI(upgrade, m_gameManager.m_debugEmployee.m_holdLevel, false);
                         }                        
                     }
                 }
