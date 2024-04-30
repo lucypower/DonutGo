@@ -7,28 +7,30 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TMP_Text m_moneyText;
-    [SerializeField] TMP_Text[] m_playerUpgrades;
-    [SerializeField] TMP_Text[] m_employeeUpgrades;
+    PlayerStatistics m_playerStatistics;
+    GameManager m_gameManager;
 
     // upgrades
+
+    [SerializeField] TMP_Text[] m_playerUpgradeLevel;
+    [SerializeField] TMP_Text[] m_employeeUpgradeLevel;
+    [SerializeField] TMP_Text[] m_playerUpgradeCost;
+    [SerializeField] TMP_Text[] m_employeeUpgradeCost;
 
     [SerializeField] GameObject m_upgradeMenu;
     [SerializeField] GameObject[] m_upgradeScreens;
     public bool m_playerScreenActive;
 
-    PlayerStatistics m_playerStatistics;
-    EmployeeStatistics m_employeeStatistics;
+    // popup menus
+
 
     private void Start()
     {
         m_playerScreenActive = true;
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
-        m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
+        m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        UpdateUpgradeUI("Walk", m_playerStatistics.m_walkLevel, true);
-        UpdateUpgradeUI("Hold", m_playerStatistics.m_holdLevel, true);
-        UpdateUpgradeUI("Walk", m_employeeStatistics.m_walkLevel, false);
-        UpdateUpgradeUI("Hold", m_employeeStatistics.m_holdLevel, false);
+        FirstUpgradeUI();
     }
 
     private void Update()
@@ -72,8 +74,8 @@ public class UIManager : MonoBehaviour
     {
         UpdateUpgradeUI("Walk", m_playerStatistics.m_walkLevel, true);
         UpdateUpgradeUI("Hold", m_playerStatistics.m_holdLevel, true);
-        UpdateUpgradeUI("Walk", m_employeeStatistics.m_walkLevel, false);
-        UpdateUpgradeUI("Walk", m_employeeStatistics.m_holdLevel, false);
+        UpdateUpgradeUI("Walk", m_gameManager.m_debugEmployee.m_walkLevel, false);
+        UpdateUpgradeUI("Hold", m_gameManager.m_debugEmployee.m_holdLevel, false);
     }
 
     public void UpdateUpgradeUI(string upgrade, int level, bool player)
@@ -84,11 +86,23 @@ public class UIManager : MonoBehaviour
 
                 if (player)
                 {
-                    m_playerUpgrades[0].text = "Level " + level;
+                    m_playerUpgradeLevel[0].text = "Level " + level;
+                    m_playerUpgradeCost[0].text = "Costs " + (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100);
+
+                    if (level == 5)
+                    {
+                        m_playerUpgradeCost[0].text = "Fully Upgraded!";
+                    }
                 }
                 else
                 {
-                    m_employeeUpgrades[0].text = "Level " + level;
+                    m_employeeUpgradeLevel[0].text = "Level " + level;
+                    m_employeeUpgradeCost[0].text = "Costs " + (Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel, 3) * 100);
+
+                    if (level == 5)
+                    {
+                        m_employeeUpgradeCost[0].text = "Fully Upgraded!";
+                    }
                 }
 
             break;
@@ -97,14 +111,26 @@ public class UIManager : MonoBehaviour
 
                 if (player)
                 {
-                    m_playerUpgrades[1].text = "Level " + level;
+                    m_playerUpgradeLevel[1].text = "Level " + level;
+                    m_playerUpgradeCost[1].text = "Costs " + (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100);
+
+                    if (level == 5)
+                    {
+                        m_playerUpgradeCost[1].text = "Fully Upgraded!";
+                    }
                 }
                 else
                 {
-                    m_employeeUpgrades[1].text = "Level " + level;
+                    m_employeeUpgradeLevel[1].text = "Level " + level;
+                    m_employeeUpgradeCost[1].text = "Costs " + (Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel, 3) * 100);
+
+                    if (level == 5)
+                    {
+                        m_employeeUpgradeCost[1].text = "Fully Upgraded!";
+                    }
                 }
 
-                break;
+            break;
         }
     }
 }

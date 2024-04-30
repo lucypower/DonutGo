@@ -82,7 +82,7 @@ public class CustomerAI : MonoBehaviour
         m_offset = m_offset + new Vector3(0, 0, -2);
     }
 
-    public void LeaveQueue() // TODO: Make condition so they can't be served until they're at the counter
+    public void LeaveQueue() 
     {
         m_inQueue = false;
         m_orderUI.SetActive(false);

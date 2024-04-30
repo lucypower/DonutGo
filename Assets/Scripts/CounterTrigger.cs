@@ -16,7 +16,7 @@ public class CounterTrigger : MonoBehaviour
     {
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
-        m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
+        //m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
     }
 
     public void UpdateCustomerList(GameObject customer)
@@ -108,6 +108,8 @@ public class CounterTrigger : MonoBehaviour
 
         if (other.CompareTag("Employee"))
         {
+            m_employeeStatistics = other.GetComponent<EmployeeStatistics>();
+
             if (m_playerNear)
             {
                 if (m_gameManager.m_spawnedCustomers.Count != 0)

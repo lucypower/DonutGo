@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DonutTrigger : MonoBehaviour
 {
     PlayerStatistics m_playerStatistics;
-    EmployeeStatistics m_employeeStatistics; // TODO: Need to make edits for multiple employees
+    EmployeeStatistics m_employeeStatistics;
     [SerializeField] private GameObject m_playerHold;
     [SerializeField] private GameObject m_employeeHold;
 
@@ -16,8 +17,6 @@ public class DonutTrigger : MonoBehaviour
     private void Start()
     {
         m_playerStatistics = m_playerHold.GetComponentInParent<PlayerStatistics>();
-        m_employeeHold = GameObject.Find("EmployeeHold");
-        m_employeeStatistics = m_employeeHold.GetComponentInParent<EmployeeStatistics>();
         m_donutCounter = GetComponentInParent<DonutCounter>();
     }
 
@@ -40,6 +39,8 @@ public class DonutTrigger : MonoBehaviour
             m_employeeStatistics.m_donutsHeld.Insert(0, donut);
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStatistics.m_donutsHeld.Count - 1), 0); // TODO: will need to change when a new model is used
+
+            m_employeeHold = m_employeeStatistics.transform.Find("EmployeeHold").gameObject;
 
             donut.transform.parent = m_employeeHold.transform;
             donut.transform.position = m_employeeHold.transform.position + offset;
@@ -64,7 +65,7 @@ public class DonutTrigger : MonoBehaviour
             {
                 if (m_donutCounter.m_donuts.Count > 0)
                 {
-                    if (m_playerStatistics.m_donutsHeld.Count < m_playerStatistics.m_holdCapacity)
+                    if (m_playerStatistics.m_donutsHeld.Count < (m_playerStatistics.m_holdLevel * 2))
                     {
                         m_playerNear = false;
                         StartCoroutine(Timer(.75f));
@@ -76,11 +77,13 @@ public class DonutTrigger : MonoBehaviour
 
         if (other.CompareTag("Employee"))
         {
+            m_employeeStatistics = other.GetComponent<EmployeeStatistics>();
+
             if (m_playerNear)
             {
                 if (m_donutCounter.m_donuts.Count > 0)
                 {
-                    if (m_employeeStatistics.m_donutsHeld.Count < m_employeeStatistics.m_holdCapacity)
+                    if (m_employeeStatistics.m_donutsHeld.Count < (m_employeeStatistics.m_holdLevel * 2))
                     {
                         m_playerNear = false;
                         StartCoroutine(Timer(.75f));

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject m_spawnLocation;
     [SerializeField] GameObject m_counter;
     public GameObject m_customer;
+
     public List<GameObject> m_spawnedCustomers;
 
     // order counter
@@ -21,6 +22,13 @@ public class GameManager : MonoBehaviour
 
     PlayerStatistics m_player;
     [HideInInspector] public int m_firstTime;
+
+    // employee
+
+    public List<EmployeeStatistics> m_spawnedEmployees;
+    [SerializeField] private GameObject m_employee;
+
+    public EmployeeStatistics m_debugEmployee;
 
     private void Start()
     {
@@ -39,6 +47,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("not first time");
             Load();
+
+            for (int i = 0; i < m_debugEmployee.m_numOfEmployees; i++)
+            {
+                Instantiate(m_employee, GameObject.Find("UpgradeTrigger").transform.position, Quaternion.identity);
+            }
         }
 
         Save();
@@ -53,6 +66,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTimer(5));
     }
 
+    public void SpawnEmployee()
+    {
+        Instantiate(m_employee, GameObject.Find("UpgradeTrigger").transform.position, Quaternion.identity);
+    }
+
     public void Save()
     {
         if (!m_player.m_firstTimeSave)
@@ -60,7 +78,7 @@ public class GameManager : MonoBehaviour
             m_player.m_firstTimeSave = true;
         }
 
-        SaveSystem.SavePlayer(m_player);
+        SaveSystem.SavePlayer(m_player, m_debugEmployee);
         Debug.Log("Save");
         StartCoroutine(SaveTimer(5));
     }
@@ -70,12 +88,13 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         m_player.m_money = data.m_money;
-        m_player.m_movementSpeed = data.m_movementSpeed;
-        m_player.m_holdCapacity = data.m_holdCapacity;
+        m_player.m_walkLevel = data.m_playerWalkLevel;
+        m_player.m_holdLevel = data.m_playerHoldLevel;
         m_player.m_firstTimeSave = data.m_firstTimeSave;
 
-        m_player.m_walkLevel = data.m_walkLevel;
-        m_player.m_holdLevel = data.m_holdLevel;
+        m_debugEmployee.m_walkLevel = data.m_employeeWalkLevel;
+        m_debugEmployee.m_holdLevel = data.m_employeeHoldLevel;
+        m_debugEmployee.m_numOfEmployees = data.m_numOfEmployees;
     }
 
     public IEnumerator SpawnTimer(float time)

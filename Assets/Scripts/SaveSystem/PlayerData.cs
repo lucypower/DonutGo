@@ -5,24 +5,32 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
+    //player
+
     public int m_money;
-    public int m_movementSpeed;
-    public int m_holdCapacity;
+    public int m_playerWalkLevel;
+    public int m_playerHoldLevel;
     public bool m_firstTimeSave;
 
-    // upgrades
+    // employee
 
-    public int m_walkLevel;
-    public int m_holdLevel;
+    public int m_employeeWalkLevel;
+    public int m_employeeHoldLevel;
+    public int m_numOfEmployees;
 
-    public PlayerData(PlayerStatistics player)
+    public PlayerData(PlayerStatistics player, EmployeeStatistics employee)
     {
+        // player
+
         m_money = player.m_money;
-        m_movementSpeed = player.m_movementSpeed;
-        m_holdCapacity = player.m_holdCapacity;
+        m_playerWalkLevel = player.m_walkLevel;
+        m_playerHoldLevel = player.m_holdLevel;
         m_firstTimeSave = player.m_firstTimeSave;
 
-        m_walkLevel = player.m_walkLevel;
-        m_holdLevel = player.m_holdLevel;
+        // employee
+
+        m_employeeWalkLevel = employee.m_walkLevel;
+        m_employeeHoldLevel = employee.m_holdLevel;
+        m_numOfEmployees = employee.m_numOfEmployees;
     }
 }
