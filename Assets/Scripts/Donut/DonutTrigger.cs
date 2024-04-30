@@ -33,6 +33,8 @@ public class DonutTrigger : MonoBehaviour
 
             donut.transform.parent = m_playerHold.transform;
             donut.transform.position = m_playerHold.transform.position + offset;
+
+            m_playerStatistics.m_donutTypeHeld = "u";
         }
         else
         {
@@ -40,10 +42,12 @@ public class DonutTrigger : MonoBehaviour
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStatistics.m_donutsHeld.Count - 1), 0); // TODO: will need to change when a new model is used
 
-            m_employeeHold = m_employeeStatistics.transform.Find("EmployeeHold").gameObject;
+            m_employeeHold = m_employeeStatistics.transform.Find("Hold").gameObject;
 
             donut.transform.parent = m_employeeHold.transform;
             donut.transform.position = m_employeeHold.transform.position + offset;
+
+            m_employeeStatistics.m_donutTypeHeld = "u";
         }        
 
         m_donutCounter.m_donuts.Remove(donut);

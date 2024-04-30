@@ -10,4 +10,5 @@ public class EmployeeStatistics : MonoBehaviour
     public int m_numOfEmployees;
 
     public List<GameObject> m_donutsHeld;
+    public string m_donutTypeHeld;
 }

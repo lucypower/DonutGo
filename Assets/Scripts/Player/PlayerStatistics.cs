@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerStatistics : MonoBehaviour
 {
-    //public int m_movementSpeed;
-   // public int m_holdCapacity;
     public List<GameObject> m_donutsHeld;
+
+    public string m_donutTypeHeld;
+
+
     public int m_money;
 
     // upgrades

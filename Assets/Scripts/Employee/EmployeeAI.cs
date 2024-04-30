@@ -14,6 +14,7 @@ public class EmployeeAI : MonoBehaviour
     private NavMeshAgent m_agent;
     [SerializeField] private GameObject m_donutCounterPickup;
     [SerializeField] private GameObject m_customerCounter;
+    [SerializeField] private GameObject m_cookCounter;
 
     private enum AIState
     {
@@ -30,6 +31,7 @@ public class EmployeeAI : MonoBehaviour
 
         m_donutCounterPickup = GameObject.Find("DonutCounterTrigger");
         m_customerCounter = GameObject.Find("CounterTrigger");
+        m_cookCounter = GameObject.Find("CookingCounter");
 
         //m_state = AIState.IDLE;
     }
@@ -80,7 +82,7 @@ public class EmployeeAI : MonoBehaviour
 
         if (m_statistics.m_donutsHeld.Count == (m_gameManager.m_debugEmployee.m_holdLevel * 2) || m_donutCounter.m_donuts.Count == 0)
         {
-            m_agent.SetDestination(m_customerCounter.transform.position);
+            m_agent.SetDestination(m_cookCounter.transform.position);
         }
     }
 }
