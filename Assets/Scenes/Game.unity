@@ -246,6 +246,7 @@ MonoBehaviour:
   m_icedDonuts: []
   m_icing: {fileID: 2100000, guid: cf406acb5da69624eb867972e42f51d5, type: 2}
   m_icedDonutHold: {fileID: 753264136}
+  m_iceNext: 1
 --- !u!1 &23103578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,6 +2373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_donutsHeld: []
   m_donutTypeHeld: n
+  m_maxDonuts: 0
   m_money: 0
   m_walkLevel: 1
   m_holdLevel: 1
@@ -5135,6 +5137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_donutsHeld: []
   m_donutTypeHeld: 
+  m_maxDonuts: 0
   m_money: 0
   m_walkLevel: 0
   m_holdLevel: 0
@@ -5643,7 +5646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753264135}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.99, y: 1.26847, z: 0}
+  m_LocalPosition: {x: 0.99, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5718,6 +5721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 376052817}
+  m_playerHold: {fileID: 1037459260}
   m_cookedDonutHold: {fileID: 1899036528}
 --- !u!1 &781737966
 GameObject:
@@ -13027,7 +13031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899036527}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.67, y: 1.0510178, z: 0}
+  m_LocalPosition: {x: -0.67, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

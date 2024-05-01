@@ -11,4 +11,11 @@ public class EmployeeStatistics : MonoBehaviour
 
     public List<GameObject> m_donutsHeld;
     public string m_donutTypeHeld;
+
+    public int m_maxDonuts;
+
+    private void Update()
+    {
+        m_maxDonuts = m_holdLevel * 2;
+    }
 }

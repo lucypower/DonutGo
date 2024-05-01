@@ -12,13 +12,14 @@ public class IcingStation : MonoBehaviour
     [SerializeField] private Material m_icing;
     [SerializeField] private Transform m_icedDonutHold;
 
-    private bool m_iceNext;
+    public bool m_iceNext;
 
     private void Update()
     {
         if (m_iceNext)
         {
-
+            IceDonut();
+            RestartCoroutine();
         }
     }
 

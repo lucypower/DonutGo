@@ -67,9 +67,9 @@ public class DonutTrigger : MonoBehaviour
         {
             if (m_playerNear)
             {
-                if (m_donutCounter.m_donuts.Count > 0)
+                if (m_donutCounter.m_donuts.Count > 0 && m_playerStatistics.m_donutsHeld.Count < (m_playerStatistics.m_holdLevel * 2))
                 {
-                    if (m_playerStatistics.m_donutsHeld.Count < (m_playerStatistics.m_holdLevel * 2))
+                    if (m_playerStatistics.m_donutTypeHeld == "n" || m_playerStatistics.m_donutTypeHeld == "u")
                     {
                         m_playerNear = false;
                         StartCoroutine(Timer(.75f));

@@ -9,7 +9,7 @@ public class IcingTrigger : MonoBehaviour
     public PlayerStatistics m_playerStats;
     private EmployeeStatistics m_employeeStats;
 
-    private Transform m_playerHold;
+    [SerializeField] private Transform m_playerHold;
     [SerializeField] private Transform m_cookedDonutHold;
 
     private bool m_playerNear;
@@ -22,6 +22,14 @@ public class IcingTrigger : MonoBehaviour
         m_playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Employee"))
+        {
+            StartCoroutine(Timer(1));
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -30,8 +38,11 @@ public class IcingTrigger : MonoBehaviour
             {
                 if (m_playerStats.m_donutTypeHeld == "n" || m_playerStats.m_donutTypeHeld == "i")
                 {
-                    CollectIced(true);
-                    RestartCoroutine();
+                    if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                    {
+                        CollectIced(true);
+                        RestartCoroutine();
+                    }
                 }
                 else if (m_playerStats.m_donutTypeHeld == "c")
                 {
@@ -48,8 +59,11 @@ public class IcingTrigger : MonoBehaviour
             {
                 if (m_employeeStats.m_donutTypeHeld == "n" || m_employeeStats.m_donutTypeHeld == "i")
                 {
-                    CollectIced(true);
-                    RestartCoroutine();
+                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts)
+                    {
+                        CollectIced(true);
+                        RestartCoroutine();
+                    }                    
                 }
                 else if (m_employeeStats.m_donutTypeHeld == "c")
                 {
@@ -60,7 +74,7 @@ public class IcingTrigger : MonoBehaviour
         }
     }
 
-    public void CollectIced(bool isPlayer)
+    public void CollectIced(bool isPlayer) // TODO: DOESNT WORK
     {
         int donutToGo = m_icingStation.m_icedDonuts.Count - 1;
         GameObject donut = m_icingStation.m_icedDonuts[donutToGo];

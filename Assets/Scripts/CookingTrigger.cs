@@ -38,8 +38,11 @@ public class CookingTrigger : MonoBehaviour
             {
                 if (m_playerStats.m_donutTypeHeld == "n" || m_playerStats.m_donutTypeHeld == "c")
                 {
-                    CollectCooked(true);
-                    RestartCoroutine();
+                    if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                    {
+                        CollectCooked(true);
+                        RestartCoroutine();
+                    }
                 }
                 else if (m_playerStats.m_donutTypeHeld == "u")
                 {
@@ -56,10 +59,13 @@ public class CookingTrigger : MonoBehaviour
             {
                 if (m_employeeStats.m_donutTypeHeld == "n" || m_employeeStats.m_donutTypeHeld == "c")
                 {
-                    CollectCooked(false);
-                    RestartCoroutine();
+                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts)
+                    {
+                        CollectCooked(true);
+                        RestartCoroutine();
+                    }
                 }
-                else if (m_employeeStats.m_donutTypeHeld == "u") // TODO: Stop cooked going back through
+                else if (m_employeeStats.m_donutTypeHeld == "u")
                 {
                     DepositUncooked(false);
                     RestartCoroutine();
