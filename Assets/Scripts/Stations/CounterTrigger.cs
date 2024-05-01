@@ -107,9 +107,12 @@ public class CounterTrigger : MonoBehaviour
                     {
                         if (m_playerStatistics.m_donutsHeld.Count > 0)
                         {
-                            m_playerNear = false;
-                            StartCoroutine(Timer(.75f));
-                            ServeCustomer(true);
+                            if (m_playerStatistics.m_donutTypeHeld == "i")
+                            {
+                                m_playerNear = false;
+                                StartCoroutine(Timer(.75f));
+                                ServeCustomer(true);
+                            }
                         }
                     }
                 }
@@ -128,9 +131,12 @@ public class CounterTrigger : MonoBehaviour
                     {
                         if (m_employeeStatistics.m_donutsHeld.Count > 0)
                         {
-                            m_playerNear = false;
-                            StartCoroutine(Timer(.75f));
-                            ServeCustomer(false);
+                            if (m_playerStatistics.m_donutTypeHeld == "i")
+                            {
+                                m_playerNear = false;
+                                StartCoroutine(Timer(.75f));
+                                ServeCustomer(false);
+                            }                                
                         }
                     }
                 }
