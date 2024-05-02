@@ -12,6 +12,11 @@ TagManager:
   - Canvas
   - Employee
   - UpgradeManager
+  - UncookedDonut
+  - CookedDonut
+  - IcedDonut
+  - CookingCounter
+  - IcingCounter
   layers:
   - Default
   - TransparentFX

@@ -41,6 +41,11 @@ public class CounterTrigger : MonoBehaviour
         
             m_customerAI[0].m_donutsHeld.Add(donut);
             m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
+
+            if (m_playerStatistics.m_donutsHeld.Count == 0)
+            {
+                m_playerStatistics.m_donutTypeHeld = "n";
+            }
         }
         else
         {
@@ -51,6 +56,11 @@ public class CounterTrigger : MonoBehaviour
 
             m_customerAI[0].m_donutsHeld.Add(donut);
             m_employeeStatistics.m_donutsHeld.Remove(m_employeeStatistics.m_donutsHeld[0]);
+
+            if (m_employeeStatistics.m_donutsHeld.Count == 0)
+            {
+                m_employeeStatistics.m_donutTypeHeld = "n";
+            }
         }
 
         int money = Random.Range(5, 16);
@@ -97,16 +107,19 @@ public class CounterTrigger : MonoBehaviour
                     {
                         if (m_playerStatistics.m_donutsHeld.Count > 0)
                         {
-                            m_playerNear = false;
-                            StartCoroutine(Timer(.75f));
-                            ServeCustomer(true);
+                            if (m_playerStatistics.m_donutTypeHeld == "i")
+                            {
+                                m_playerNear = false;
+                                StartCoroutine(Timer(.75f));
+                                ServeCustomer(true);
+                            }
                         }
                     }
                 }
             }
         }
 
-        if (other.CompareTag("Employee"))
+        if (other.CompareTag("Employee")) // TODO: EMPLOYEE NOT SERVING
         {
             m_employeeStatistics = other.GetComponent<EmployeeStatistics>();
 
@@ -118,9 +131,12 @@ public class CounterTrigger : MonoBehaviour
                     {
                         if (m_employeeStatistics.m_donutsHeld.Count > 0)
                         {
-                            m_playerNear = false;
-                            StartCoroutine(Timer(.75f));
-                            ServeCustomer(false);
+                            if (m_playerStatistics.m_donutTypeHeld == "i")
+                            {
+                                m_playerNear = false;
+                                StartCoroutine(Timer(.75f));
+                                ServeCustomer(false);
+                            }                                
                         }
                     }
                 }

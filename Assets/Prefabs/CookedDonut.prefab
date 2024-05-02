@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5583081342259170124}
   - component: {fileID: 1813318352878352819}
   m_Layer: 0
-  m_Name: Donut
-  m_TagString: IcedDonut
+  m_Name: CookedDonut
+  m_TagString: CookedDonut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf406acb5da69624eb867972e42f51d5, type: 2}
+  - {fileID: 2100000, guid: 3eb8907864c835a48b99b5e207908565, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
