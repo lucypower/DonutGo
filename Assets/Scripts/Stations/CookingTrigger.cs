@@ -10,6 +10,7 @@ public class CookingTrigger : MonoBehaviour
     private EmployeeStatistics m_employeeStats;
 
     [SerializeField] private GameObject m_playerHold;
+    private Transform m_employeeHold;
     [SerializeField] private Transform m_uncookedDonutHold;
 
     private bool m_playerNear;
@@ -102,10 +103,10 @@ public class CookingTrigger : MonoBehaviour
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
 
-            GameObject hold = m_employeeStats.transform.Find("Hold").gameObject;
+            m_employeeHold = m_employeeStats.transform.Find("Hold");
 
-            donut.transform.parent = hold.transform;
-            donut.transform.position = hold.transform.position + offset;
+            donut.transform.parent = m_employeeHold;
+            donut.transform.position = m_employeeHold.position + offset;
 
             m_employeeStats.m_donutTypeHeld = "c";
         }

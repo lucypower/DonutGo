@@ -21,6 +21,7 @@ public class EmployeeAI : MonoBehaviour
     [SerializeField] private GameObject m_icingCounter;
 
     private bool m_working;
+    private bool m_completingTask;
 
     public enum AIState
     {
@@ -148,20 +149,45 @@ public class EmployeeAI : MonoBehaviour
     {
         Debug.Log("cook");
 
-        if (m_statistics.m_donutsHeld.Count == 0)
-        {
-            m_agent.SetDestination(m_donutCounter.transform.position);
-        }
+        //if (!m_completingTask)
+        //{
+        //    if (m_statistics.m_donutsHeld.Count == 0 && m_donutCounter.m_donuts.Count > 0)
+        //    {
+        //        m_agent.SetDestination(m_donutCounter.transform.position);
 
-        if (m_statistics.m_donutsHeld.Count == m_gameManager.m_debugEmployee.m_maxDonuts || m_donutCounter.m_donuts.Count == 0)
-        {
-            m_agent.SetDestination(m_cookCounter.transform.position);
+        //        if (m_agent.transform.position == m_donutCounter.transform.position && m_statistics.m_donutsHeld.Count == m_gameManager.m_debugEmployee.m_maxDonuts)
+        //        {
+        //            m_completingTask = true;
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    m_agent.SetDestination(m_cookCounter.transform.position);
 
-            if (m_statistics.m_donutsHeld.Count == 0)
-            {
-                m_working = false;
-            }
-        }
+        //    if (m_statistics.m_donutsHeld.Count == 0)
+        //    {
+        //        m_working = false;
+        //    }
+        //}
+
+
+
+
+        //if (m_statistics.m_donutsHeld.Count == m_gameManager.m_debugEmployee.m_maxDonuts || m_donutCounter.m_donuts.Count == 0)
+        //{
+        //    m_agent.SetDestination(m_cookCounter.transform.position);
+
+        //    //if (m_statistics.m_donutsHeld.Count == 0)
+        //    //{
+        //    //    m_working = false;
+        //    //}
+        //    //if (m_agent.transform.position == m_cookCounter.transform.position && m_statistics.m_donutsHeld.Count == 0)
+        //    //{
+        //    //    m_working = false;
+        //    //}
+        //}
+
     }
 
     public void IceDonuts()

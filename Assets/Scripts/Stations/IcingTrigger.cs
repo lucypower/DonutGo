@@ -10,6 +10,7 @@ public class IcingTrigger : MonoBehaviour
     private EmployeeStatistics m_employeeStats;
 
     [SerializeField] private Transform m_playerHold;
+    private Transform m_employeeHold;
     [SerializeField] private Transform m_cookedDonutHold;
 
     private bool m_playerNear;
@@ -59,7 +60,7 @@ public class IcingTrigger : MonoBehaviour
             {
                 if (m_employeeStats.m_donutTypeHeld == "n" || m_employeeStats.m_donutTypeHeld == "i")
                 {
-                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts)
+                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts && m_icingStation.m_icedDonuts.Count > 1)
                     {
                         CollectIced(true);
                         RestartCoroutine();
@@ -74,7 +75,7 @@ public class IcingTrigger : MonoBehaviour
         }
     }
 
-    public void CollectIced(bool isPlayer) // TODO: DOESNT WORK
+    public void CollectIced(bool isPlayer)
     {
         int donutToGo = m_icingStation.m_icedDonuts.Count - 1;
         GameObject donut = m_icingStation.m_icedDonuts[donutToGo];
@@ -96,10 +97,10 @@ public class IcingTrigger : MonoBehaviour
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
 
-            Transform hold = m_employeeStats.transform.Find("Hold");
+            m_employeeHold = m_employeeStats.transform.Find("Hold");
 
-            donut.transform.parent = hold;
-            donut.transform.position = hold.position + offset;
+            donut.transform.parent = m_employeeHold;
+            donut.transform.position = m_employeeHold.position + offset;
 
             m_playerStats.m_donutTypeHeld = "i";
         }

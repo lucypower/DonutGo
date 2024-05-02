@@ -16,7 +16,7 @@ public class IcingStation : MonoBehaviour
 
     private void Update()
     {
-        if (m_iceNext)
+        if (m_iceNext && m_nonIcedDonuts.Count > 0)
         {
             IceDonut();
             RestartCoroutine();
