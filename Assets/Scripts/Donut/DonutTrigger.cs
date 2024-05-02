@@ -89,9 +89,12 @@ public class DonutTrigger : MonoBehaviour
                 {
                     if (m_employeeStatistics.m_donutsHeld.Count < (m_employeeStatistics.m_holdLevel * 2))
                     {
-                        m_playerNear = false;
-                        StartCoroutine(Timer(.75f));
-                        DonutPickup(false);
+                        if (m_employeeStatistics.m_donutTypeHeld == "n" || m_employeeStatistics.m_donutTypeHeld == "u")
+                        {
+                            m_playerNear = false;
+                            StartCoroutine(Timer(.75f));
+                            DonutPickup(false);
+                        }
                     }
                 }
             }

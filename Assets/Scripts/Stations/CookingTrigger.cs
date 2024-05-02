@@ -27,7 +27,7 @@ public class CookingTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
-            StartCoroutine(Timer(1));
+            StartCoroutine(Timer(2));
         }
     }
 
@@ -55,6 +55,7 @@ public class CookingTrigger : MonoBehaviour
         else if (other.CompareTag("Employee"))
         {
             m_employeeStats = other.GetComponent<EmployeeStatistics>();
+            m_employeeHold = other.transform.GetChild(0);
 
             if (m_playerNear)
             {
@@ -62,7 +63,7 @@ public class CookingTrigger : MonoBehaviour
                 {
                     if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts)
                     {
-                        CollectCooked(true);
+                        CollectCooked(false);
                         RestartCoroutine();
                     }
                 }
@@ -102,8 +103,6 @@ public class CookingTrigger : MonoBehaviour
             m_employeeStats.m_donutsHeld.Insert(0, donut);
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
-
-            m_employeeHold = m_employeeStats.transform.Find("Hold");
 
             donut.transform.parent = m_employeeHold;
             donut.transform.position = m_employeeHold.position + offset;

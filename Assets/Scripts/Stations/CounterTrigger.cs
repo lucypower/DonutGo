@@ -119,7 +119,7 @@ public class CounterTrigger : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Employee"))
+        if (other.CompareTag("Employee")) // TODO: EMPLOYEE NOT SERVING
         {
             m_employeeStatistics = other.GetComponent<EmployeeStatistics>();
 

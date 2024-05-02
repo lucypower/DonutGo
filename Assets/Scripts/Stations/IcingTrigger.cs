@@ -27,7 +27,7 @@ public class IcingTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
-            StartCoroutine(Timer(1));
+            StartCoroutine(Timer(2));
         }
     }
 
@@ -55,6 +55,7 @@ public class IcingTrigger : MonoBehaviour
         else if (other.CompareTag("Employee"))
         {
             m_employeeStats = other.GetComponent<EmployeeStatistics>();
+            m_employeeHold = other.transform.GetChild(0);
 
             if (m_playerNear)
             {
@@ -62,13 +63,13 @@ public class IcingTrigger : MonoBehaviour
                 {
                     if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts && m_icingStation.m_icedDonuts.Count > 1)
                     {
-                        CollectIced(true);
+                        CollectIced(false);
                         RestartCoroutine();
                     }                    
                 }
                 else if (m_employeeStats.m_donutTypeHeld == "c")
                 {
-                    DepositUnIced(true);
+                    DepositUnIced(false);
                     RestartCoroutine();
                 }
             }
@@ -97,12 +98,10 @@ public class IcingTrigger : MonoBehaviour
 
             Vector3 offset = new Vector3(0, 0.25f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
 
-            m_employeeHold = m_employeeStats.transform.Find("Hold");
-
             donut.transform.parent = m_employeeHold;
             donut.transform.position = m_employeeHold.position + offset;
 
-            m_playerStats.m_donutTypeHeld = "i";
+            m_employeeStats.m_donutTypeHeld = "i";
         }
 
         m_icingStation.m_icedDonuts.Remove(donut);
@@ -125,6 +124,21 @@ public class IcingTrigger : MonoBehaviour
             if (m_playerStats.m_donutsHeld.Count == 0)
             {
                 m_playerStats.m_donutTypeHeld = "n";
+            }
+        }
+        else
+        {
+            GameObject donut = m_employeeStats.m_donutsHeld.First();
+
+            donut.transform.parent = m_cookedDonutHold;
+            donut.transform.position = m_cookedDonutHold.position + offset;
+
+            m_icingStation.m_nonIcedDonuts.Add(donut);
+            m_employeeStats.m_donutsHeld.Remove(m_employeeStats.m_donutsHeld[0]);
+
+            if (m_employeeStats.m_donutsHeld.Count == 0)
+            {
+                m_employeeStats.m_donutTypeHeld = "n";
             }
         }
     }
