@@ -10,13 +10,12 @@ public class CounterTrigger : MonoBehaviour
     EmployeeStatistics m_employeeStatistics;
 
     [SerializeField] private List<CustomerAI> m_customerAI;
-    bool m_playerNear;
+    public bool m_playerNear;
 
     private void Start()
     {
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
-        //m_employeeStatistics = GameObject.FindGameObjectWithTag("Employee").GetComponent<EmployeeStatistics>();
     }
 
     public void UpdateCustomerList(GameObject customer)
@@ -119,7 +118,7 @@ public class CounterTrigger : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Employee")) // TODO: EMPLOYEE NOT SERVING
+        if (other.CompareTag("Employee")) 
         {
             m_employeeStatistics = other.GetComponent<EmployeeStatistics>();
 
@@ -131,7 +130,7 @@ public class CounterTrigger : MonoBehaviour
                     {
                         if (m_employeeStatistics.m_donutsHeld.Count > 0)
                         {
-                            if (m_playerStatistics.m_donutTypeHeld == "i")
+                            if (m_employeeStatistics.m_donutTypeHeld == "i")
                             {
                                 m_playerNear = false;
                                 StartCoroutine(Timer(.75f));

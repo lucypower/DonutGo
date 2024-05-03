@@ -244,7 +244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nonIcedDonuts: []
   m_icedDonuts: []
-  m_icing: {fileID: 2100000, guid: cf406acb5da69624eb867972e42f51d5, type: 2}
+  m_icing:
+  - {fileID: 2100000, guid: cf406acb5da69624eb867972e42f51d5, type: 2}
+  - {fileID: 2100000, guid: e35d3de4c7f8b5141b3a2a69ba4462ce, type: 2}
+  - {fileID: 2100000, guid: 0063f29b16f80a84a98d9cdf6e72758d, type: 2}
   m_icedDonutHold: {fileID: 753264136}
   m_iceNext: 1
 --- !u!1 &23103578
@@ -2430,7 +2433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376052816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 0, z: 13.03}
+  m_LocalPosition: {x: -1.05, y: 0, z: 7.54}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3628,7 +3631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &533981419
 Transform:
   m_ObjectHideFlags: 0
@@ -3658,7 +3661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceac547261a579b449b0ee8455fdbba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_station: Donut
+  m_station: Icing
 --- !u!65 &533981421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4145,6 +4148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_customerAI: []
+  m_playerNear: 0
 --- !u!1 &613398271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6599,6 +6603,12 @@ MonoBehaviour:
   m_donutCounterLevel: 0
   m_donutCapacityLevel: 0
   m_donutSpawnTimeLevel: 0
+  m_cookingLevel: 0
+  m_cookingCapacityLevel: 0
+  m_cookingSpawnTimeLevel: 0
+  m_icingLevel: 0
+  m_icingCapacityLevel: 0
+  m_icingSpawnTimeLevel: 0
   m_customerCounterLevel: 0
   m_customerSpawnTimeLevel: 0
 --- !u!4 &924736419
@@ -9526,7 +9536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235253530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.86, y: 1, z: 7.42}
+  m_LocalPosition: {x: -3.45, y: 1, z: 7.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9860,7 +9870,7 @@ GameObject:
   - component: {fileID: 1337519613}
   - component: {fileID: 1337519612}
   m_Layer: 5
-  m_Name: DonutText
+  m_Name: CookingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10137,7 +10147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1365563575
 Transform:
   m_ObjectHideFlags: 0
@@ -10167,7 +10177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceac547261a579b449b0ee8455fdbba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_station: Donut
+  m_station: Cooking
 --- !u!65 &1365563577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10949,7 +10959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540368522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.72, y: 1, z: 7.42}
+  m_LocalPosition: {x: 2.6, y: 1, z: 7.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12154,7 +12164,7 @@ GameObject:
   - component: {fileID: 1748921356}
   - component: {fileID: 1748921355}
   m_Layer: 5
-  m_Name: DonutText
+  m_Name: IcingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12468,6 +12478,8 @@ MonoBehaviour:
   m_upgradeText:
   - {fileID: 1579564237}
   - {fileID: 619928795}
+  - {fileID: 1337519612}
+  - {fileID: 1748921355}
 --- !u!1 &1820549280
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,6 +89,64 @@ public class UpgradeTrigger : MonoBehaviour
                         }
 
                     break;
+
+                    case "Cooking":
+
+                        if (m_upgradeManager.m_cookingLevel < 10)
+                        {
+                            if (m_playerStatistics.m_money >= m_upgradeManager.m_cookingLevel * 1000)
+                            {
+                                m_playerStatistics.m_money -= m_upgradeManager.m_cookingLevel * 1000;
+                                m_upgradeManager.m_cookingLevel++;
+
+                                if (m_upgradeManager.m_cookingLevel % 2 == 0)
+                                {
+                                    m_upgradeManager.m_cookingCapacityLevel++;
+                                }
+                                else
+                                {
+                                    m_upgradeManager.m_cookingSpawnTimeLevel++;
+                                }
+
+                                int money = m_upgradeManager.m_cookingLevel * 1000;
+
+                                m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_cookingLevel, money);
+
+                                m_playerNear = false;
+                                StartCoroutine(Timer(2f));
+                            }
+                        }
+
+                        break;
+
+                    case "Icing":
+
+                        if (m_upgradeManager.m_icingLevel < 10)
+                        {
+                            if (m_playerStatistics.m_money >= m_upgradeManager.m_icingLevel * 1000)
+                            {
+                                m_playerStatistics.m_money -= m_upgradeManager.m_icingLevel * 1000;
+                                m_upgradeManager.m_icingLevel++;
+
+                                if (m_upgradeManager.m_icingLevel % 2 == 0)
+                                {
+                                    m_upgradeManager.m_icingCapacityLevel++;
+                                }
+                                else
+                                {
+                                    m_upgradeManager.m_icingSpawnTimeLevel++;
+                                }
+
+                                int money = m_upgradeManager.m_icingLevel * 1000;
+
+                                m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_icingLevel, money);
+
+                                m_playerNear = false;
+                                StartCoroutine(Timer(2f));
+                            }
+                        }
+
+                        break;
                 }
             }       
         }

@@ -13,7 +13,7 @@ public class EmployeeAI : MonoBehaviour
         SERVING
     };
 
-    private AIState m_state;
+    public AIState m_state;
 
     private NavMeshAgent m_agent;
     EmployeeStatistics m_stats;
@@ -21,17 +21,11 @@ public class EmployeeAI : MonoBehaviour
     GameManager m_gameManager;
 
     DonutCounter m_donutCounter;
-    Transform m_donutTrigger;
-
     CookingStation m_cookingStation;
-    Transform m_cookingTrigger;
-
     IcingStation m_icingStation;
-    Transform m_icingTrigger;
-
     Transform m_customerCounter;
 
-    [SerializeField] private bool m_travelling;
+    public bool m_travelling;
 
     private void Start()
     {
@@ -39,13 +33,10 @@ public class EmployeeAI : MonoBehaviour
         m_customerCounter = GameObject.Find("CounterTrigger").transform;
 
         m_donutCounter = GameObject.FindGameObjectWithTag("DonutCounter").GetComponent<DonutCounter>();
-        m_donutTrigger = GameObject.Find("DonutCounterTrigger").transform;
 
         m_cookingStation = GameObject.FindGameObjectWithTag("CookingCounter").GetComponent<CookingStation>();
-        m_cookingTrigger = GameObject.Find("CookingCounterTrigger").transform;
 
         m_icingStation = GameObject.FindGameObjectWithTag("IcingCounter").GetComponent<IcingStation>();
-        m_icingTrigger = GameObject.Find("IcingCounterTrigger").transform;
 
         m_agent = GetComponent<NavMeshAgent>();
         m_stats = GetComponent<EmployeeStatistics>();

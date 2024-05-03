@@ -168,6 +168,28 @@ public class UIManager : MonoBehaviour
                 }
 
                 break;
+
+            case "Cooking":
+
+                m_upgradeText[2].text = "Level " + level + "\nCosts " + money;
+
+                if (level == 10)
+                {
+                    m_upgradeText[2].text = "Max Upgrades";
+                }
+
+                break;
+
+            case "Icing":
+
+                m_upgradeText[3].text = "Level " + level + "\nCosts " + money;
+
+                if (level == 10)
+                {
+                    m_upgradeText[3].text = "Max Upgrades";
+                }
+
+                break;
         }
     }
 }

@@ -38,7 +38,6 @@ public class CookingStation : MonoBehaviour
         int donutNo = m_uncookedDonuts.Count - 1;
         GameObject donut = m_uncookedDonuts[donutNo];
 
-        m_uncookedDonuts.Remove(donut);
         m_cookedDonuts.Add(donut);
 
         Vector3 offset = new Vector3(0, 0.25f * (m_cookedDonuts.Count - 1), 0);
@@ -46,6 +45,8 @@ public class CookingStation : MonoBehaviour
         donut.GetComponent<Renderer>().material = m_cookedDonut;
         donut.transform.parent = m_cookedDonutHold;
         donut.transform.position = m_cookedDonutHold.position + offset;
+        
+        m_uncookedDonuts.Remove(donut);
     }
 
     IEnumerator Timer(float time)
