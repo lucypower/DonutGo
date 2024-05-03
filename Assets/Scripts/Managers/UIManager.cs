@@ -85,6 +85,8 @@ public class UIManager : MonoBehaviour
 
         UpdateUpgradeUI("Donut", m_upgradeManager.m_donutCounterLevel, m_upgradeManager.m_donutCounterLevel * 1000);
         UpdateUpgradeUI("Customer", m_upgradeManager.m_customerCounterLevel, m_upgradeManager.m_customerCounterLevel * 1000);
+        UpdateUpgradeUI("Cooking", m_upgradeManager.m_cookingLevel, m_upgradeManager.m_cookingLevel * 1000);
+        UpdateUpgradeUI("Icing", m_upgradeManager.m_icingLevel, m_upgradeManager.m_icingLevel * 1000);
     }
 
     public void UpdateShopUI(string upgrade, int level, bool player)

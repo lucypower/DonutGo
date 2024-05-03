@@ -28,7 +28,7 @@ public class IcingTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
-            StartCoroutine(Timer(2));
+            StartCoroutine(Timer(1));
         }
     }
 
@@ -90,7 +90,7 @@ public class IcingTrigger : MonoBehaviour
         {
             m_playerStats.m_donutsHeld.Insert(0, donut);
 
-            Vector3 offset = new Vector3(0, 0.25f * (m_playerStats.m_donutsHeld.Count - 1), 0);
+            Vector3 offset = new Vector3(0, 0.2f * (m_playerStats.m_donutsHeld.Count - 1), 0);
 
             donut.transform.parent = m_playerHold.transform;
             donut.transform.position = m_playerHold.transform.position + offset;
@@ -101,7 +101,7 @@ public class IcingTrigger : MonoBehaviour
         {
             m_employeeStats.m_donutsHeld.Insert(0, donut);
 
-            Vector3 offset = new Vector3(0, 0.25f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
+            Vector3 offset = new Vector3(0, 0.2f * (m_employeeStats.m_donutsHeld.Count - 1), 0);
 
             donut.transform.parent = m_employeeHold;
             donut.transform.position = m_employeeHold.position + offset;
@@ -157,6 +157,6 @@ public class IcingTrigger : MonoBehaviour
     public void RestartCoroutine()
     {
         m_playerNear = false;
-        StartCoroutine(Timer(2));
+        StartCoroutine(Timer(.5f));
     }
 }

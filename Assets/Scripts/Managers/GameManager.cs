@@ -105,6 +105,14 @@ public class GameManager : MonoBehaviour
         m_upgradeManager.m_donutSpawnTimeLevel = data.m_donutSpawnTimeLevel;
 
         m_upgradeManager.m_customerCounterLevel = data.m_customerCounterLevel;
+
+        m_upgradeManager.m_cookingLevel = data.m_cookingLevel;
+        m_upgradeManager.m_cookingCapacityLevel = data.m_cookingCapacityLevel;
+        m_upgradeManager.m_cookingSpawnTimeLevel = data.m_cookingSpawnTimeLevel;
+
+        m_upgradeManager.m_icingLevel = data.m_icingLevel;
+        m_upgradeManager.m_icingCapacityLevel = data.m_icingCapacityLevel;
+        m_upgradeManager.m_icingSpawnTimeLevel = data.m_icingSpawnTimeLevel;
     }
 
     public IEnumerator SpawnTimer(float time)

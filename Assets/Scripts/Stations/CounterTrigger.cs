@@ -29,7 +29,7 @@ public class CounterTrigger : MonoBehaviour
         
         Transform customerHold = m_customerAI[0].transform.Find("Hold");
 
-        Vector3 offset = new Vector3(0, 0.25f * (m_customerAI[0].m_donutsHeld.Count - 1), 0);
+        Vector3 offset = new Vector3(0, 0.2f * (m_customerAI[0].m_donutsHeld.Count - 1), 0);
 
         if (player)
         {
