@@ -9,6 +9,8 @@ public class CookingTrigger : MonoBehaviour
     private PlayerStatistics m_playerStats;
     private EmployeeStatistics m_employeeStats;
 
+    private EmployeeAI m_employeeAI;
+
     [SerializeField] private GameObject m_playerHold;
     private Transform m_employeeHold;
     [SerializeField] private Transform m_uncookedDonutHold;
@@ -56,6 +58,7 @@ public class CookingTrigger : MonoBehaviour
         {
             m_employeeStats = other.GetComponent<EmployeeStatistics>();
             m_employeeHold = other.transform.GetChild(0);
+            m_employeeAI = other.GetComponent<EmployeeAI>();
 
             if (m_playerNear)
             {
@@ -63,8 +66,12 @@ public class CookingTrigger : MonoBehaviour
                 {
                     if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts)
                     {
-                        CollectCooked(false);
-                        RestartCoroutine();
+
+                        if (m_employeeAI.m_state == EmployeeAI.AIState.ICING)
+                        {
+                            CollectCooked(false);
+                            RestartCoroutine();
+                        }
                     }
                 }
                 else if (m_employeeStats.m_donutTypeHeld == "u")

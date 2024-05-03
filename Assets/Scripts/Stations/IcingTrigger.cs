@@ -8,6 +8,7 @@ public class IcingTrigger : MonoBehaviour
     private IcingStation m_icingStation;
     public PlayerStatistics m_playerStats;
     private EmployeeStatistics m_employeeStats;
+    EmployeeAI m_employeeAI;
 
     [SerializeField] private Transform m_playerHold;
     private Transform m_employeeHold;
@@ -55,6 +56,7 @@ public class IcingTrigger : MonoBehaviour
         else if (other.CompareTag("Employee"))
         {
             m_employeeStats = other.GetComponent<EmployeeStatistics>();
+            m_employeeAI = other.GetComponent<EmployeeAI>();
             m_employeeHold = other.transform.GetChild(0);
 
             if (m_playerNear)
@@ -63,8 +65,11 @@ public class IcingTrigger : MonoBehaviour
                 {
                     if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts && m_icingStation.m_icedDonuts.Count > 1)
                     {
-                        CollectIced(false);
-                        RestartCoroutine();
+                        if (m_employeeAI.m_state == EmployeeAI.AIState.SERVING)
+                        {
+                            CollectIced(false);
+                            RestartCoroutine();
+                        }                        
                     }                    
                 }
                 else if (m_employeeStats.m_donutTypeHeld == "c")
@@ -101,7 +106,7 @@ public class IcingTrigger : MonoBehaviour
             donut.transform.parent = m_employeeHold;
             donut.transform.position = m_employeeHold.position + offset;
 
-            m_employeeStats.m_donutTypeHeld = "i";
+            m_employeeStats.m_donutTypeHeld = "i";            
         }
 
         m_icingStation.m_icedDonuts.Remove(donut);
@@ -152,6 +157,6 @@ public class IcingTrigger : MonoBehaviour
     public void RestartCoroutine()
     {
         m_playerNear = false;
-        StartCoroutine(Timer(1));
+        StartCoroutine(Timer(2));
     }
 }

@@ -10,6 +10,18 @@ public class UpgradeManager : MonoBehaviour
     public int m_donutCapacityLevel;
     public int m_donutSpawnTimeLevel;
 
+    // cooking counter
+
+    public int m_cookingLevel;
+    public int m_cookingCapacityLevel;
+    public int m_cookingSpawnTimeLevel;
+
+    // icing counter
+
+    public int m_icingLevel;
+    public int m_icingCapacityLevel;
+    public int m_icingSpawnTimeLevel;
+
     // customer counter
 
     public int m_customerCounterLevel;

@@ -9,7 +9,7 @@ public class IcingStation : MonoBehaviour
     public List<GameObject> m_nonIcedDonuts;
     public List<GameObject> m_icedDonuts;
 
-    [SerializeField] private Material m_icing;
+    [SerializeField] private Material[] m_icing;
     [SerializeField] private Transform m_icedDonutHold;
 
     public bool m_iceNext;
@@ -33,7 +33,9 @@ public class IcingStation : MonoBehaviour
 
         Vector3 offset = new Vector3(0, 0.25f * (m_icedDonuts.Count - 1), 0);
 
-        donut.GetComponent<Renderer>().material = m_icing;
+        int random = Random.Range(0, 4);
+
+        donut.GetComponent<Renderer>().material = m_icing[random];
         donut.transform.parent = m_icedDonutHold;
         donut.transform.position = m_icedDonutHold.position + offset; 
     }
