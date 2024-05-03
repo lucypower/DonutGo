@@ -26,6 +26,18 @@ public class PlayerData
 
     public int m_customerCounterLevel;
 
+    // cooking counter
+
+    public int m_cookingLevel;
+    public int m_cookingCapacityLevel;
+    public int m_cookingSpawnTimeLevel;
+
+    // icing counter
+
+    public int m_icingLevel;
+    public int m_icingCapacityLevel;
+    public int m_icingSpawnTimeLevel;
+
     public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade)
     {
         // player
@@ -48,5 +60,13 @@ public class PlayerData
         m_donutSpawnTimeLevel = upgrade.m_donutSpawnTimeLevel;
 
         m_customerCounterLevel = upgrade.m_customerCounterLevel;
+
+        m_cookingLevel = upgrade.m_cookingLevel;
+        m_cookingCapacityLevel = upgrade.m_cookingCapacityLevel;
+        m_cookingSpawnTimeLevel = upgrade.m_cookingSpawnTimeLevel;
+
+        m_icingLevel = upgrade.m_icingLevel;
+        m_icingCapacityLevel = upgrade.m_icingCapacityLevel;
+        m_icingSpawnTimeLevel = upgrade.m_icingSpawnTimeLevel;
     }
 }
