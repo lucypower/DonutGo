@@ -7,11 +7,15 @@ using UnityEngine.UI;
 
 public class DailyRewards : MonoBehaviour
 {
+    [SerializeField] private PlayerStatistics m_playerStats;
+
     public string m_lastClaimTime;
 
     [SerializeField] private Button m_button;
     [SerializeField] private Slider m_slider;
     [SerializeField] private TextMeshProUGUI m_text;
+    [SerializeField] private TextMeshProUGUI m_collectionText;
+    [SerializeField] private GameObject m_collectionScreen;
 
     public bool m_todayClaimed;
 
@@ -65,7 +69,6 @@ public class DailyRewards : MonoBehaviour
 
             float totalTime = sliderHour + sliderMinute + sliderSecond;
             m_slider.value = (m_maxSliderTime - totalTime) / m_maxSliderTime;
-            //m_slider.value = totalTime / m_maxSliderTime;
 
             if (totalTime == 0)
             {
@@ -82,9 +85,34 @@ public class DailyRewards : MonoBehaviour
         m_button.interactable = false;
         m_text.text = TimeTillNextClaim();
 
+        RewardScreen();
+
         if (!m_todayClaimed)
         {
             m_todayClaimed = true;
+        }
+    }
+
+    public void RewardScreen() // TODO: NOT COMPLETE, TEMP THINGS
+    {
+        m_collectionScreen.SetActive(true);
+
+        int random = UnityEngine.Random.Range(0, 3);
+
+        if (random == 0)
+        {
+            m_collectionText.text = "You've just earned 1000 moneys!";
+            m_playerStats.m_money += 1000;
+        }
+        else if (random == 1)
+        {
+            m_collectionText.text = "You've just earned 100 moneys!";
+            m_playerStats.m_money += 100;
+        }
+        else
+        {
+            m_collectionText.text = "You've just earned 50 moneys!";
+            m_playerStats.m_money += 50;
         }
     }
 
