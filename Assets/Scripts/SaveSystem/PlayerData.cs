@@ -38,7 +38,12 @@ public class PlayerData
     public int m_icingCapacityLevel;
     public int m_icingSpawnTimeLevel;
 
-    public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade)
+    // rewards
+
+    public string m_lastClaimTime;
+    public bool m_todayClaimed;
+
+    public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade, DailyRewards rewards)
     {
         // player
 
@@ -68,5 +73,10 @@ public class PlayerData
         m_icingLevel = upgrade.m_icingLevel;
         m_icingCapacityLevel = upgrade.m_icingCapacityLevel;
         m_icingSpawnTimeLevel = upgrade.m_icingSpawnTimeLevel;
+
+        // rewards system
+
+        m_lastClaimTime = rewards.m_lastClaimTime;
+        m_todayClaimed = rewards.m_todayClaimed;
     }
 }

@@ -31,9 +31,12 @@ public class GameManager : MonoBehaviour
     public EmployeeStatistics m_debugEmployee;
     [SerializeField] UpgradeManager m_upgradeManager;
 
-    private void Start()
+    // rewards
+
+    [SerializeField] DailyRewards m_dailyRewards;
+
+    private void Awake()
     {
-        m_counterTrigger = m_counter.GetComponentInChildren<CounterTrigger>();
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerStatistics>();
 
         int hasPlayed = PlayerPrefs.GetInt("m_firstTime");
@@ -56,6 +59,13 @@ public class GameManager : MonoBehaviour
         }
 
         Save();
+    }
+
+    private void Start()
+    {
+        m_counterTrigger = m_counter.GetComponentInChildren<CounterTrigger>();
+        
+        
         SpawnCustomer();
     }
 
@@ -82,7 +92,7 @@ public class GameManager : MonoBehaviour
             m_player.m_firstTimeSave = true;
         }
 
-        SaveSystem.SavePlayer(m_player, m_debugEmployee, m_upgradeManager);
+        SaveSystem.SavePlayer(m_player, m_debugEmployee, m_upgradeManager, m_dailyRewards);
         Debug.Log("Save");
         StartCoroutine(SaveTimer(5));
     }
@@ -113,6 +123,9 @@ public class GameManager : MonoBehaviour
         m_upgradeManager.m_icingLevel = data.m_icingLevel;
         m_upgradeManager.m_icingCapacityLevel = data.m_icingCapacityLevel;
         m_upgradeManager.m_icingSpawnTimeLevel = data.m_icingSpawnTimeLevel;
+
+        m_dailyRewards.m_lastClaimTime = data.m_lastClaimTime;
+        m_dailyRewards.m_todayClaimed = data.m_todayClaimed;
     }
 
     public IEnumerator SpawnTimer(float time)
