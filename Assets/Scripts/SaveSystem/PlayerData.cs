@@ -40,10 +40,12 @@ public class PlayerData
 
     // rewards
 
-    public string m_lastClaimTime;
+    public string m_lastDClaimTime;
+    public string m_lastHClaimTime;
     public bool m_todayClaimed;
+    public bool m_hourClaimed;
 
-    public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade, DailyRewards rewards)
+    public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade, DailyRewards daily, HourlyRewards hourly)
     {
         // player
 
@@ -76,7 +78,10 @@ public class PlayerData
 
         // rewards system
 
-        m_lastClaimTime = rewards.m_lastClaimTime;
-        m_todayClaimed = rewards.m_todayClaimed;
+        m_lastDClaimTime = daily.m_lastClaimTime;
+        m_todayClaimed = daily.m_todayClaimed;
+
+        m_lastHClaimTime = hourly.m_lastClaimTime;
+        m_hourClaimed = hourly.m_hourClaimed;
     }
 }
