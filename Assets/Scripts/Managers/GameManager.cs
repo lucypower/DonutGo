@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
         m_player.m_money = data.m_money;
         m_player.m_walkLevel = data.m_playerWalkLevel;
         m_player.m_holdLevel = data.m_playerHoldLevel;
+        m_player.m_profitLevel = data.m_playerProfitLevel;
         m_player.m_firstTimeSave = data.m_firstTimeSave;
 
         m_debugEmployee.m_walkLevel = data.m_employeeWalkLevel;

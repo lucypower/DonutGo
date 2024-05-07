@@ -16,10 +16,12 @@ public class PlayerStatistics : MonoBehaviour
 
     public int m_walkLevel;
     public int m_holdLevel;
+    public float m_profitLevel;
 
     public bool m_firstTimeSave;
-
     public bool m_broughtAdFree;
+
+    public bool m_xProfitActive;
 
     private void Update()
     {

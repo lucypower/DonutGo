@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeShop : MonoBehaviour
 {
@@ -8,11 +9,47 @@ public class UpgradeShop : MonoBehaviour
     GameManager m_gameManager;
     PlayerStatistics m_playerStatistics;
 
+    [SerializeField] Button[] m_upgradeButtons;
+
+    public float[] m_upgradeCosts;
+
     private void Start()
     {
         m_uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
+
+        m_upgradeCosts = new float[6];
+
+        CalculateCost();
+    }
+
+    private void Update()
+    {
+        CalculateCost();
+
+        for (int i = 0; i < m_upgradeButtons.Length; i++)
+        {
+            if (m_playerStatistics.m_money >= m_upgradeCosts[i])
+            {
+                m_upgradeButtons[i].GetComponent<Image>().color = Color.green;
+            }
+            else
+            {
+                m_upgradeButtons[i].GetComponent<Image>().color = Color.red;
+            }
+        }
+    }
+
+    public void CalculateCost()
+    {
+        m_upgradeCosts[0] = Mathf.Pow(m_playerStatistics.m_walkLevel + 1, 3) * 100;
+        m_upgradeCosts[1] = Mathf.Pow(m_playerStatistics.m_holdLevel + 1, 3) * 100;
+        m_upgradeCosts[2] = Mathf.Pow(m_playerStatistics.m_profitLevel + 1, 3) * 100;
+
+        m_upgradeCosts[3] = Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel + 1, 3) * 100;
+        m_upgradeCosts[4] = Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel + 1, 3) * 100;
+        m_upgradeCosts[5] = Mathf.Pow(m_gameManager.m_debugEmployee.m_numOfEmployees + 1, 3) * 200;
     }
 
     #region Trigger Enter/Exit
@@ -45,9 +82,9 @@ public class UpgradeShop : MonoBehaviour
                 {                    
                     if (m_playerStatistics.m_walkLevel < 5)
                     {
-                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100))
+                        if (m_playerStatistics.m_money >= m_upgradeCosts[0])
                         {
-                            RemoveMoney(Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100);
+                            RemoveMoney(m_upgradeCosts[0]);
 
                             m_playerStatistics.m_walkLevel++;
 
@@ -59,9 +96,9 @@ public class UpgradeShop : MonoBehaviour
                 {                    
                     if (m_gameManager.m_debugEmployee.m_walkLevel < 5)
                     {
-                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel, 3) * 100))
+                        if (m_playerStatistics.m_money >= m_upgradeCosts[3])
                         {
-                            RemoveMoney(Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel, 3) * 100);
+                            RemoveMoney(m_upgradeCosts[3]);
 
                             m_gameManager.m_debugEmployee.m_walkLevel++;
 
@@ -78,10 +115,12 @@ public class UpgradeShop : MonoBehaviour
                 {
                     if (m_playerStatistics.m_holdLevel < 5)
                     {
-                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100))
+                        if (m_playerStatistics.m_money >= m_upgradeCosts[1])
                         {
-                            RemoveMoney(Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100);
+                            RemoveMoney(m_upgradeCosts[1]);
+
                             m_playerStatistics.m_holdLevel++;
+
                             m_uiManager.UpdateShopUI(upgrade, m_playerStatistics.m_holdLevel, true);
                         }                        
                     }
@@ -90,9 +129,9 @@ public class UpgradeShop : MonoBehaviour
                 {                    
                     if (m_gameManager.m_debugEmployee.m_holdLevel < 5)
                     {
-                        if (m_playerStatistics.m_money >= (Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel, 3) * 100))
+                        if (m_playerStatistics.m_money >= m_upgradeCosts[4])
                         {
-                            RemoveMoney(Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel, 3) * 100);
+                            RemoveMoney(m_upgradeCosts[4]);
 
                             m_gameManager.m_debugEmployee.m_holdLevel++;
 
@@ -103,14 +142,30 @@ public class UpgradeShop : MonoBehaviour
 
             break;
 
+            case "Profit":
+
+                if (m_playerStatistics.m_profitLevel < 10)
+                {
+                    if (m_playerStatistics.m_money >= m_upgradeCosts[2])
+                    {
+                        RemoveMoney(m_upgradeCosts[2]);
+
+                        m_playerStatistics.m_profitLevel++;
+
+                        m_uiManager.UpdateShopUI(upgrade, (int)m_playerStatistics.m_profitLevel, true);
+                    }
+                }
+
+                break;
+
             case "Employee":
 
                 if (m_gameManager.m_debugEmployee.m_numOfEmployees < 2)
                 {
-                    if (m_playerStatistics.m_money >= 1000) // TODO: Adjust cost of employees
+                    if (m_playerStatistics.m_money >= m_upgradeCosts[5]) 
                     {
+                        RemoveMoney(m_upgradeCosts[5]);
                         m_gameManager.m_debugEmployee.m_numOfEmployees++;
-                        RemoveMoney(1000);
                         m_gameManager.SpawnEmployee();
                     }
                 }

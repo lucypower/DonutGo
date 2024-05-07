@@ -70,7 +70,8 @@ public class RewardAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
             StartCoroutine(AdvertTimer(m_advertTime));
 
-            m_playerStats.m_money += 1000;
+            m_playerStats.m_xProfitActive = true; // TODO: TEST HOW THIS WORKS WITH GOING ON ANOTHER APP FOR LIKE 2 MINS
+            StartCoroutine(RewardTimer(300));
         }
     }
 
@@ -100,5 +101,11 @@ public class RewardAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     {
         yield return new WaitForSeconds(time);
         LoadAd();
+    }
+
+    IEnumerator RewardTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        m_playerStats.m_xProfitActive = false;
     }
 }
