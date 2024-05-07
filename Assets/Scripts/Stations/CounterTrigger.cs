@@ -62,7 +62,17 @@ public class CounterTrigger : MonoBehaviour
             }
         }
 
-        int money = Random.Range(5, 16);
+        int random = Random.Range(5, 16);
+        int money;
+
+        if (m_playerStatistics.m_xProfitActive)
+        {
+            money = Mathf.FloorToInt(random * (1 + ((m_playerStatistics.m_profitLevel / 10) * 2)));
+        }
+        else
+        {
+            money = Mathf.FloorToInt(random * (1 + (m_playerStatistics.m_profitLevel / 10)));
+        }
 
         m_playerStatistics.m_money += money;
 

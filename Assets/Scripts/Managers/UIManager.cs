@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     PlayerStatistics m_playerStatistics;
     GameManager m_gameManager;
     UpgradeManager m_upgradeManager;
+    [SerializeField] UpgradeShop m_upgradeShop;
 
     [Header("General Shop")]
 
     [SerializeField] TMP_Text m_moneyText;
+    [SerializeField] TMP_Text m_profitText;
     [SerializeField] GameObject m_upgradeMenu;
     [SerializeField] GameObject[] m_upgradeScreens;
     public bool m_playerScreenActive;
@@ -28,6 +31,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TMP_Text[] m_upgradeText;
 
+    [Header("Shop Buttons")]
+
+    [SerializeField] Button m_playerButton;
+    [SerializeField] Button m_employeeButton;
 
     private void Start()
     {
@@ -36,12 +43,23 @@ public class UIManager : MonoBehaviour
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
 
+        m_playerButton.GetComponent<Image>().color = Color.gray;
+
         FirstUpgradeUI();
     }
 
     private void Update()
     {
         m_moneyText.text = "Money : " + m_playerStatistics.m_money;
+
+        if (m_playerStatistics.m_xProfitActive)
+        {
+            m_profitText.text = "x" + (1 + ((m_playerStatistics.m_profitLevel / 10) * 2));
+        }
+        else
+        {
+            m_profitText.text = "x" + (1 + (m_playerStatistics.m_profitLevel / 10));
+        }        
     }
 
     public void UpgradeMenu(bool showMenu)
@@ -67,6 +85,9 @@ public class UIManager : MonoBehaviour
         m_upgradeScreens[0].SetActive(true);
         m_upgradeScreens[1].SetActive(false);
         m_playerScreenActive = true;
+
+        m_playerButton.GetComponent<Image>().color = Color.gray;
+        m_employeeButton.GetComponent<Image>().color = Color.white;
     }
 
     public void EmployeeUpgrades()
@@ -74,6 +95,9 @@ public class UIManager : MonoBehaviour
         m_upgradeScreens[1].SetActive(true);
         m_upgradeScreens[0].SetActive(false);
         m_playerScreenActive = false;
+
+        m_playerButton.GetComponent<Image>().color = Color.white;
+        m_employeeButton.GetComponent<Image>().color = Color.gray;
     }
 
     public void FirstUpgradeUI()
@@ -82,6 +106,7 @@ public class UIManager : MonoBehaviour
         UpdateShopUI("Hold", m_playerStatistics.m_holdLevel, true);
         UpdateShopUI("Walk", m_gameManager.m_debugEmployee.m_walkLevel, false);
         UpdateShopUI("Hold", m_gameManager.m_debugEmployee.m_holdLevel, false);
+        UpdateShopUI("Profit", (int)m_playerStatistics.m_profitLevel, true);
 
         UpdateUpgradeUI("Donut", m_upgradeManager.m_donutCounterLevel, m_upgradeManager.m_donutCounterLevel * 1000);
         UpdateUpgradeUI("Customer", m_upgradeManager.m_customerCounterLevel, m_upgradeManager.m_customerCounterLevel * 1000);
@@ -98,7 +123,7 @@ public class UIManager : MonoBehaviour
                 if (player)
                 {
                     m_playerUpgradeLevel[0].text = "Level " + level;
-                    m_playerUpgradeCost[0].text = "Costs " + (Mathf.Pow(m_playerStatistics.m_walkLevel, 3) * 100);
+                    m_playerUpgradeCost[0].text = "Costs " + (m_upgradeShop.m_upgradeCosts[0]);
 
                     if (level == 5)
                     {
@@ -108,7 +133,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     m_employeeUpgradeLevel[0].text = "Level " + level;
-                    m_employeeUpgradeCost[0].text = "Costs " + (Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel, 3) * 100);
+                    m_employeeUpgradeCost[0].text = "Costs " + (m_upgradeShop.m_upgradeCosts[3]);
 
                     if (level == 5)
                     {
@@ -123,7 +148,7 @@ public class UIManager : MonoBehaviour
                 if (player)
                 {
                     m_playerUpgradeLevel[1].text = "Level " + level;
-                    m_playerUpgradeCost[1].text = "Costs " + (Mathf.Pow(m_playerStatistics.m_holdLevel, 3) * 100);
+                    m_playerUpgradeCost[1].text = "Costs " + (m_upgradeShop.m_upgradeCosts[1]);
 
                     if (level == 5)
                     {
@@ -133,7 +158,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     m_employeeUpgradeLevel[1].text = "Level " + level;
-                    m_employeeUpgradeCost[1].text = "Costs " + (Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel, 3) * 100);
+                    m_employeeUpgradeCost[1].text = "Costs " + (m_upgradeShop.m_upgradeCosts[4]);
 
                     if (level == 5)
                     {
@@ -142,6 +167,18 @@ public class UIManager : MonoBehaviour
                 }
 
             break;
+
+            case "Profit":
+
+                m_playerUpgradeLevel[2].text = "Level " + level;
+                m_playerUpgradeCost[2].text = "Costs " + m_upgradeShop.m_upgradeCosts[2];
+
+                if (level == 5)
+                {
+                    m_playerUpgradeCost[2].text = "Fully Upgraded!";
+                }
+
+                break;
         }
     }
 

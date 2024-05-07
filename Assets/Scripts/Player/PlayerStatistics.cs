@@ -16,11 +16,25 @@ public class PlayerStatistics : MonoBehaviour
 
     public int m_walkLevel;
     public int m_holdLevel;
+    public float m_profitLevel;
 
     public bool m_firstTimeSave;
+    public bool m_broughtAdFree;
+
+    public bool m_xProfitActive;
 
     private void Update()
     {
         m_maxDonuts = m_holdLevel * 2;
+    }
+
+    public void BuyAdFree()
+    {
+        m_broughtAdFree = true;
+    }
+
+    public void DebugNoAddFree() // TODO: DEBUG
+    {
+        m_broughtAdFree = false;
     }
 }

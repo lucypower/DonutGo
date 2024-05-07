@@ -10,6 +10,7 @@ public class PlayerData
     public int m_money;
     public int m_playerWalkLevel;
     public int m_playerHoldLevel;
+    public float m_playerProfitLevel;
     public bool m_firstTimeSave;
 
     // employee
@@ -45,6 +46,10 @@ public class PlayerData
     public bool m_todayClaimed;
     public bool m_hourClaimed;
 
+    // adverts
+
+    public bool m_broughtAdFree;
+
     public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade, DailyRewards daily, HourlyRewards hourly)
     {
         // player
@@ -52,6 +57,7 @@ public class PlayerData
         m_money = player.m_money;
         m_playerWalkLevel = player.m_walkLevel;
         m_playerHoldLevel = player.m_holdLevel;
+        m_playerProfitLevel = player.m_profitLevel;
         m_firstTimeSave = player.m_firstTimeSave;
 
         // employee
@@ -83,5 +89,9 @@ public class PlayerData
 
         m_lastHClaimTime = hourly.m_lastClaimTime;
         m_hourClaimed = hourly.m_hourClaimed;
+
+        // adverts
+
+        m_broughtAdFree = player.m_broughtAdFree;
     }
 }

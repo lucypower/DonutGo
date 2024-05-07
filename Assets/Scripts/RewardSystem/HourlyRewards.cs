@@ -8,12 +8,16 @@ using UnityEngine.UI;
 
 public class HourlyRewards : MonoBehaviour
 {
+    [SerializeField] private PlayerStatistics m_playerStats;
+
     public string m_lastClaimTime;
     DateTime m_lastTime;
 
     [SerializeField] private Button m_button;
     [SerializeField] private Slider m_slider;
     [SerializeField] private TextMeshProUGUI m_text;
+    [SerializeField] private TextMeshProUGUI m_collectionText;
+    [SerializeField] private GameObject m_collectionScreen;
 
     float m_maxSliderTime;
     public bool m_hourClaimed;
@@ -78,9 +82,34 @@ public class HourlyRewards : MonoBehaviour
         m_button.interactable = false;
         m_text.text = TimeTillNextClaim();
 
+        RewardScreen();
+
         if (!m_hourClaimed)
         {
             m_hourClaimed = true;
+        }
+    }
+
+    public void RewardScreen() // TODO: NOT COMPLETE, TEMP THINGS
+    {
+        m_collectionScreen.SetActive(true);
+
+        int random = UnityEngine.Random.Range(0, 3);
+
+        if (random == 0)
+        {
+            m_collectionText.text = "You've just earned 1000 moneys!";
+            m_playerStats.m_money += 1000;
+        }
+        else if (random == 1)
+        {
+            m_collectionText.text = "You've just earned 100 moneys!";
+            m_playerStats.m_money += 100;
+        }
+        else
+        {
+            m_collectionText.text = "You've just earned 50 moneys!";
+            m_playerStats.m_money += 50;
         }
     }
 

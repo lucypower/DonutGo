@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] DailyRewards m_dailyRewards;
     [SerializeField] HourlyRewards m_hourlyRewards;
 
+    // adverts
+
+    [SerializeField] InterstitalAds m_interstitalAds;
+    public float m_adTimer;    
+
     private void Awake()
     {
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerStatistics>();
@@ -65,8 +70,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         m_counterTrigger = m_counter.GetComponentInChildren<CounterTrigger>();
-        
-        
+                
         SpawnCustomer();
     }
 
@@ -105,6 +109,7 @@ public class GameManager : MonoBehaviour
         m_player.m_money = data.m_money;
         m_player.m_walkLevel = data.m_playerWalkLevel;
         m_player.m_holdLevel = data.m_playerHoldLevel;
+        m_player.m_profitLevel = data.m_playerProfitLevel;
         m_player.m_firstTimeSave = data.m_firstTimeSave;
 
         m_debugEmployee.m_walkLevel = data.m_employeeWalkLevel;
@@ -130,6 +135,18 @@ public class GameManager : MonoBehaviour
 
         m_hourlyRewards.m_lastClaimTime = data.m_lastHClaimTime;
         m_hourlyRewards.m_hourClaimed = data.m_hourClaimed;
+
+        m_player.m_broughtAdFree = data.m_broughtAdFree;
+    }
+
+    public void ShowAdvert()
+    {
+        if (!m_player.m_broughtAdFree)
+        {
+            m_interstitalAds.LoadAd();
+        }
+
+            StartCoroutine(AdvertTimer(m_adTimer)); // TODO: DEBUG OUTSIDE IF LOOP
     }
 
     public IEnumerator SpawnTimer(float time)
@@ -142,6 +159,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Save();
+    }
+
+    public IEnumerator AdvertTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ShowAdvert();
     }
 
 
