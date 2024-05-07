@@ -45,6 +45,10 @@ public class PlayerData
     public bool m_todayClaimed;
     public bool m_hourClaimed;
 
+    // adverts
+
+    public bool m_broughtAdFree;
+
     public PlayerData(PlayerStatistics player, EmployeeStatistics employee, UpgradeManager upgrade, DailyRewards daily, HourlyRewards hourly)
     {
         // player
@@ -83,5 +87,9 @@ public class PlayerData
 
         m_lastHClaimTime = hourly.m_lastClaimTime;
         m_hourClaimed = hourly.m_hourClaimed;
+
+        // adverts
+
+        m_broughtAdFree = player.m_broughtAdFree;
     }
 }
