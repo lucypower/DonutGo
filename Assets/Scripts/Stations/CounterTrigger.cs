@@ -67,7 +67,7 @@ public class CounterTrigger : MonoBehaviour
 
         if (m_playerStatistics.m_xProfitActive)
         {
-            money = Mathf.FloorToInt(random * (1 + ((m_playerStatistics.m_profitLevel / 10) * 2)));
+            money = Mathf.FloorToInt(random * ((1 + (m_playerStatistics.m_profitLevel / 10)) * 2));
         }
         else
         {

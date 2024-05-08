@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_dailyRewards: {fileID: 330854241}
   m_hourlyRewards: {fileID: 330854243}
   m_interstitalAds: {fileID: 1347022332}
-  m_adTimer: 10
+  m_adTimer: 60
 --- !u!4 &152669612
 Transform:
   m_ObjectHideFlags: 0

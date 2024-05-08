@@ -72,7 +72,7 @@ public class UpgradeShop : MonoBehaviour
 
     #endregion
 
-    public void Upgrade(string upgrade) // TODO: ui with red/green colour changes 
+    public void Upgrade(string upgrade)
     {
         switch (upgrade) 
         {

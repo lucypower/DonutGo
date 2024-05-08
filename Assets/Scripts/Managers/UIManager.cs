@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
 
         if (m_playerStatistics.m_xProfitActive)
         {
-            m_profitText.text = "x" + (1 + ((m_playerStatistics.m_profitLevel / 10) * 2));
+            m_profitText.text = "x" + ((1 + (m_playerStatistics.m_profitLevel / 10)) * 2);
         }
         else
         {
@@ -116,6 +116,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateShopUI(string upgrade, int level, bool player)
     {
+        m_upgradeShop.CalculateCost();
+
         switch (upgrade)
         {
             case "Walk":
@@ -173,7 +175,7 @@ public class UIManager : MonoBehaviour
                 m_playerUpgradeLevel[2].text = "Level " + level;
                 m_playerUpgradeCost[2].text = "Costs " + m_upgradeShop.m_upgradeCosts[2];
 
-                if (level == 5)
+                if (level == 10)
                 {
                     m_playerUpgradeCost[2].text = "Fully Upgraded!";
                 }
