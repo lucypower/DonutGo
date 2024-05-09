@@ -17,11 +17,13 @@ public class InitializeGameServices : MonoBehaviour
 
                 .SetEnvironmentName("test");
 
-            #else
+
+#else
 
                 .SetEnvironmentName("production");
+                Debug.Log("production");
 
-            #endif
+#endif
 
             await UnityServices.InitializeAsync(options);
         }

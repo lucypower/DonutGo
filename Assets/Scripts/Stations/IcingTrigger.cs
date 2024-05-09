@@ -63,7 +63,7 @@ public class IcingTrigger : MonoBehaviour
             {
                 if (m_employeeStats.m_donutTypeHeld == "n" || m_employeeStats.m_donutTypeHeld == "i")
                 {
-                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts && m_icingStation.m_icedDonuts.Count > 1)
+                    if (m_employeeStats.m_donutsHeld.Count < m_employeeStats.m_maxDonuts && m_icingStation.m_icedDonuts.Count > 0)
                     {
                         if (m_employeeAI.m_state == EmployeeAI.AIState.SERVING)
                         {

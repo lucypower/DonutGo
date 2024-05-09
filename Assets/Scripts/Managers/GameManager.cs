@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     // settings
 
     public bool m_hapticOn;
+    [SerializeField] private GameObject m_tutorialWindow;
 
     private void Awake()
     {
@@ -54,6 +55,9 @@ public class GameManager : MonoBehaviour
         if (hasPlayed == 0)
         {
             Debug.Log("first time");
+
+            m_tutorialWindow.SetActive(true);
+
             PlayerPrefs.SetInt("m_firstTime", 1);
             PlayerPrefs.Save();
         }
