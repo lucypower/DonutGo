@@ -62,6 +62,8 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_donutCounterLevel, money);
 
+                                Handheld.Vibrate();
+
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
                             }
@@ -81,6 +83,8 @@ public class UpgradeTrigger : MonoBehaviour
                                 int money = m_upgradeManager.m_customerCounterLevel * 1000;
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_customerCounterLevel, money);
+
+                                Handheld.Vibrate();
 
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
@@ -112,6 +116,8 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_cookingLevel, money);
 
+                                Handheld.Vibrate();
+
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
                             }
@@ -141,12 +147,15 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_icingLevel, money);
 
+                                Handheld.Vibrate();
+
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
                             }
                         }
 
-                        break;
+                    break;
+
                 }
             }       
         }
