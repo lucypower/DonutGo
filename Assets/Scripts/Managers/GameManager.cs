@@ -39,7 +39,11 @@ public class GameManager : MonoBehaviour
     // adverts
 
     [SerializeField] InterstitalAds m_interstitalAds;
-    public float m_adTimer;    
+    public float m_adTimer;
+
+    // settings
+
+    public bool m_hapticOn;
 
     private void Awake()
     {
@@ -147,6 +151,18 @@ public class GameManager : MonoBehaviour
         }
 
             StartCoroutine(AdvertTimer(m_adTimer)); // TODO: DEBUG OUTSIDE IF LOOP
+    }
+
+    public void HapticSetting()
+    {
+        if (m_hapticOn)
+        {
+            m_hapticOn = false;
+        }
+        else
+        {
+            m_hapticOn = true;
+        }
     }
 
     public IEnumerator SpawnTimer(float time)

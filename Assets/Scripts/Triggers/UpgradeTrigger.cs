@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeTrigger : MonoBehaviour
 {
-    DonutCounter m_donutCounter;
+    GameManager m_gameManager;
     PlayerStatistics m_playerStatistics;
     UpgradeManager m_upgradeManager;
     UIManager m_uiManager;
@@ -18,7 +18,7 @@ public class UpgradeTrigger : MonoBehaviour
     {
         m_upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
         m_uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
-        m_donutCounter = GetComponentInParent<DonutCounter>();
+        m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
     }
 
@@ -62,7 +62,10 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_donutCounterLevel, money);
 
-                                Handheld.Vibrate();
+                                if (m_gameManager.m_hapticOn)
+                                {
+                                    Handheld.Vibrate();
+                                }
 
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
@@ -84,7 +87,10 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_customerCounterLevel, money);
 
-                                Handheld.Vibrate();
+                                if (m_gameManager.m_hapticOn)
+                                {
+                                    Handheld.Vibrate();
+                                }
 
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
@@ -116,7 +122,10 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_cookingLevel, money);
 
-                                Handheld.Vibrate();
+                                if (m_gameManager.m_hapticOn)
+                                {
+                                    Handheld.Vibrate();
+                                }
 
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));
@@ -147,7 +156,10 @@ public class UpgradeTrigger : MonoBehaviour
 
                                 m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_icingLevel, money);
 
-                                Handheld.Vibrate();
+                                if (m_gameManager.m_hapticOn)
+                                {
+                                    Handheld.Vibrate();
+                                }
 
                                 m_playerNear = false;
                                 StartCoroutine(Timer(2f));

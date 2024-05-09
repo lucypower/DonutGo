@@ -114,7 +114,7 @@ public class IcingTrigger : MonoBehaviour
 
     public void DepositUnIced(bool isPlayer)
     {
-        Vector3 offset = new Vector3(0, 0.25f * (m_icingStation.m_nonIcedDonuts.Count - 1), 0);
+        Vector3 offset = new Vector3(0, 0.2f * (m_icingStation.m_nonIcedDonuts.Count - 1), 0);
 
         if (isPlayer)
         {
