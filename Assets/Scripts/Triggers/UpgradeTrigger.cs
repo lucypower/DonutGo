@@ -6,6 +6,7 @@ public class UpgradeTrigger : MonoBehaviour
 {
     GameManager m_gameManager;
     PlayerStatistics m_playerStatistics;
+    PlayerMovement m_playerMovement;
     UpgradeManager m_upgradeManager;
     UIManager m_uiManager;
 
@@ -20,6 +21,7 @@ public class UpgradeTrigger : MonoBehaviour
         m_uiManager = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
+        m_playerMovement = m_playerStatistics.GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,7 +38,7 @@ public class UpgradeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (m_playerNear)
+            if (m_playerNear && m_playerMovement.m_rigidbody.velocity.magnitude < 0.1f)
             {
                 switch (m_station)
                 {
