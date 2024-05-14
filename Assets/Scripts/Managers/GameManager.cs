@@ -39,7 +39,12 @@ public class GameManager : MonoBehaviour
     // adverts
 
     [SerializeField] InterstitalAds m_interstitalAds;
-    public float m_adTimer;    
+    public float m_adTimer;
+
+    // settings
+
+    public bool m_hapticOn;
+    [SerializeField] private GameObject m_tutorialWindow;
 
     private void Awake()
     {
@@ -50,6 +55,9 @@ public class GameManager : MonoBehaviour
         if (hasPlayed == 0)
         {
             Debug.Log("first time");
+
+            m_tutorialWindow.SetActive(true);
+
             PlayerPrefs.SetInt("m_firstTime", 1);
             PlayerPrefs.Save();
         }
@@ -147,6 +155,18 @@ public class GameManager : MonoBehaviour
         }
 
             StartCoroutine(AdvertTimer(m_adTimer)); // TODO: DEBUG OUTSIDE IF LOOP
+    }
+
+    public void HapticSetting()
+    {
+        if (m_hapticOn)
+        {
+            m_hapticOn = false;
+        }
+        else
+        {
+            m_hapticOn = true;
+        }
     }
 
     public IEnumerator SpawnTimer(float time)

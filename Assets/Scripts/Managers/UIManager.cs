@@ -107,6 +107,7 @@ public class UIManager : MonoBehaviour
         UpdateShopUI("Walk", m_gameManager.m_debugEmployee.m_walkLevel, false);
         UpdateShopUI("Hold", m_gameManager.m_debugEmployee.m_holdLevel, false);
         UpdateShopUI("Profit", (int)m_playerStatistics.m_profitLevel, true);
+        UpdateShopUI("Employee", 0, false);
 
         UpdateUpgradeUI("Donut", m_upgradeManager.m_donutCounterLevel, m_upgradeManager.m_donutCounterLevel * 1000);
         UpdateUpgradeUI("Customer", m_upgradeManager.m_customerCounterLevel, m_upgradeManager.m_customerCounterLevel * 1000);
@@ -179,6 +180,12 @@ public class UIManager : MonoBehaviour
                 {
                     m_playerUpgradeCost[2].text = "Fully Upgraded!";
                 }
+
+                break;
+
+            case "Employee":
+
+                m_employeeUpgradeCost[2].text = "Costs " + m_upgradeShop.m_upgradeCosts[5];
 
                 break;
         }

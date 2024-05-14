@@ -167,6 +167,8 @@ public class UpgradeShop : MonoBehaviour
                         RemoveMoney(m_upgradeCosts[5]);
                         m_gameManager.m_debugEmployee.m_numOfEmployees++;
                         m_gameManager.SpawnEmployee();
+
+                        m_uiManager.UpdateShopUI(upgrade, 0, false);
                     }
                 }
 
