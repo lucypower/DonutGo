@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject m_model;
 
     PlayerStatistics m_statistics;
-    Rigidbody m_rigidbody;
+    public Rigidbody m_rigidbody;
     Vector2 m_input;
 
     private void Start()
@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
             m_model.transform.rotation = Quaternion.LookRotation(rotateDirection);
         }
 
+
+        Debug.Log(m_rigidbody.velocity.magnitude);
     }
 
     private void FixedUpdate()

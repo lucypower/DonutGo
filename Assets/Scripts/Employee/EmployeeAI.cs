@@ -58,15 +58,11 @@ public class EmployeeAI : MonoBehaviour
         {
             case AIState.CHECKING:
 
-                Debug.Log("checking");
-
                 CheckCounters();
 
             break; 
             
             case AIState.COOKING:
-
-                Debug.Log("cooking");
 
                 CookDonuts();
 
@@ -74,15 +70,11 @@ public class EmployeeAI : MonoBehaviour
 
             case AIState.ICING:
 
-                Debug.Log("icing");
-
                 IceDonuts();
 
             break;
 
             case AIState.SERVING:
-
-                Debug.Log("serving");
 
                 ServeDonuts();
 
