@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
         }
 
         Save();
+
+        m_hapticOn = true;
     }
 
     private void Start()

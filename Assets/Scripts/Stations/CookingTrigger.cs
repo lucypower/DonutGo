@@ -16,6 +16,7 @@ public class CookingTrigger : MonoBehaviour
     [SerializeField] private Transform m_uncookedDonutHold;
 
     private bool m_playerNear;
+    private bool m_switchover;
 
     private void Start()
     {
@@ -41,10 +42,13 @@ public class CookingTrigger : MonoBehaviour
             {
                 if (m_playerStats.m_donutTypeHeld == "n" || m_playerStats.m_donutTypeHeld == "c")
                 {
-                    if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                    if (!m_switchover)
                     {
-                        CollectCooked(true);
-                        RestartCoroutine();
+                        if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                        {
+                            CollectCooked(true);
+                            RestartCoroutine();
+                        }
                     }
                 }
                 else if (m_playerStats.m_donutTypeHeld == "u")
@@ -87,6 +91,13 @@ public class CookingTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         m_playerNear = true;
+    }
+
+    IEnumerator SwitchoverTimer(float time)
+    {
+        m_switchover = true;
+        yield return new WaitForSeconds(time);
+        m_switchover = false;
     }
 
     public void CollectCooked(bool isPlayer)
@@ -137,6 +148,7 @@ public class CookingTrigger : MonoBehaviour
             if (m_playerStats.m_donutsHeld.Count == 0)
             {
                 m_playerStats.m_donutTypeHeld = "n";
+                StartCoroutine(SwitchoverTimer(3));
             }
         }
         else
