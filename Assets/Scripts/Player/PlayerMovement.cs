@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Debug.Log(m_rigidbody.velocity.magnitude);
+        //Debug.Log(m_rigidbody.velocity.magnitude);
     }
 
     private void FixedUpdate()

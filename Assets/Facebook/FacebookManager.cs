@@ -1,7 +1,10 @@
 using Facebook.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using UnityEngine;
 
 public class FacebookManager : MonoBehaviour
@@ -25,7 +28,7 @@ public class FacebookManager : MonoBehaviour
         }
     }
 
-    private void InitCallback()
+    void InitCallback()
     {
         if (FB.IsInitialized)
         {
@@ -40,7 +43,7 @@ public class FacebookManager : MonoBehaviour
         }
     }
 
-    private void OnHideUnity(bool isGameShown)
+    void OnHideUnity(bool isGameShown)
     {
         if (!isGameShown)
         {
@@ -81,6 +84,27 @@ public class FacebookManager : MonoBehaviour
             Debug.Log("User cancelled login");
         }
 
+    }
+
+    public async Task SignInWithFacebookAsync(string accessToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessToken);
+            Debug.Log("SignIn is successful.");
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
     }
 
     public void RewardClaimed()
