@@ -160,7 +160,7 @@ public class UpgradeShop : MonoBehaviour
 
             case "Employee":
 
-                if (m_gameManager.m_debugEmployee.m_numOfEmployees < 2)
+                if (m_gameManager.m_debugEmployee.m_numOfEmployees < 1)
                 {
                     if (m_playerStatistics.m_money >= m_upgradeCosts[5]) 
                     {
