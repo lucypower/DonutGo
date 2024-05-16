@@ -24,7 +24,6 @@ public class CustomerAI : MonoBehaviour
     public GameObject m_orderUI;
     public TextMeshProUGUI m_orderText;
 
-    NavMeshAgent m_agent;
 
     private void Start()
     {
@@ -35,7 +34,6 @@ public class CustomerAI : MonoBehaviour
         m_leaveLocation1 = GameObject.FindGameObjectWithTag("LeaveLocation");
         m_leaveLocation2 = GameObject.FindGameObjectWithTag("LeaveLocation2");
 
-        m_agent = GetComponent<NavMeshAgent>();
 
         m_offset = new Vector3(0, 0, (m_gameManager.m_spawnedCustomers.Count - 1) * 2);
         m_inQueue = true;
@@ -57,18 +55,25 @@ public class CustomerAI : MonoBehaviour
         {
             if (!m_leavingBuilding)
             {
-                m_agent.SetDestination(m_leaveLocation1.transform.position);
+                transform.position = Vector3.MoveTowards(transform.position, m_leaveLocation1.transform.position, m_statistics.m_movementSpeed * Time.deltaTime);
+                               
 
-                if (m_agent.remainingDistance <= m_agent.stoppingDistance)
+                if (transform.position == m_leaveLocation1.transform.position)
                 {
                     m_leavingBuilding = true;
+
+                    Vector3 pos = m_leaveLocation2.transform.position - transform.position;
+                    Quaternion rotation = Quaternion.LookRotation(pos, Vector3.up);
+                    transform.rotation = rotation;
                 }
             }
             else
             {
-                m_agent.SetDestination(m_leaveLocation2.transform.position);
+                transform.position = Vector3.MoveTowards(transform.position, m_leaveLocation2.transform.position, m_statistics.m_movementSpeed * Time.deltaTime);
 
-                if (m_agent.remainingDistance <= m_agent.stoppingDistance)
+                
+
+                if (transform.position == m_leaveLocation2.transform.position)
                 {
                     Destroy(gameObject);
                 }
@@ -90,6 +95,11 @@ public class CustomerAI : MonoBehaviour
     public void LeaveQueue() 
     {
         m_inQueue = false;
+
+        Vector3 pos = m_leaveLocation1.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(pos, Vector3.up);
+        transform.rotation = rotation;
+
         m_orderUI.SetActive(false);
     }
 }
