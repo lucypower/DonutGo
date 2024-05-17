@@ -39,9 +39,7 @@ public class CounterTrigger : MonoBehaviour
             donut.transform.position = customerHold.position + offset;
         
             m_customerAI[0].m_donutsHeld.Add(donut);
-            m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
-
-            m_customerAI[0].m_orderText.text = (m_customerAI[0].m_orderTotal - m_customerAI[0].m_donutsHeld.Count).ToString();
+            m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);            
 
             if (m_playerStatistics.m_donutsHeld.Count == 0)
             {

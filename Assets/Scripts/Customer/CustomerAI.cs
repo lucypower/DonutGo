@@ -46,6 +46,8 @@ public class CustomerAI : MonoBehaviour
 
     private void Update() 
     {
+        m_orderText.text = (m_orderTotal -  m_donutsHeld.Count).ToString();
+
         if (m_inQueue) 
         {
             transform.position = Vector3.MoveTowards(transform.position, m_counterLocation.transform.position - m_offset,

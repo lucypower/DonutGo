@@ -25,6 +25,9 @@ public class EmployeeAI : MonoBehaviour
     IcingStation m_icingStation;
     Transform m_customerCounter;
 
+    [SerializeField] GameObject m_rightArm;
+    [SerializeField] GameObject m_leftArm;
+
     public bool m_travelling;
 
     private void Start()
@@ -50,6 +53,8 @@ public class EmployeeAI : MonoBehaviour
         m_stats.m_holdLevel = m_gameManager.m_debugEmployee.m_holdLevel;
 
         m_agent.speed = m_gameManager.m_debugEmployee.m_walkLevel + 1;
+
+        
     }
 
     private void FixedUpdate()
@@ -79,6 +84,17 @@ public class EmployeeAI : MonoBehaviour
                 ServeDonuts();
 
             break;
+        }
+
+        if (m_stats.m_donutsHeld.Count > 0)
+        {
+            m_leftArm.transform.localRotation = Quaternion.Euler(78.0244064f, 343.627136f, 259.284485f);
+            m_rightArm.transform.localRotation = Quaternion.Euler(85.3386765f, 333.392548f, 60.2258415f);
+        }
+        else
+        {
+            m_leftArm.transform.localRotation = Quaternion.Euler(54.3289757f, 355.844543f, 354.642822f);
+            m_rightArm.transform.localRotation = Quaternion.Euler(53.8094521f, 1.7422266f, 2.54413462f);
         }
     }
 

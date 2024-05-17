@@ -57,7 +57,7 @@ public class DonutTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
-            StartCoroutine(Timer(.5f));
+            StartCoroutine(Timer(1f));
         }
     }
 
@@ -72,7 +72,7 @@ public class DonutTrigger : MonoBehaviour
                     if (m_playerStatistics.m_donutTypeHeld == "n" || m_playerStatistics.m_donutTypeHeld == "u")
                     {
                         m_playerNear = false;
-                        StartCoroutine(Timer(.75f));
+                        StartCoroutine(Timer(1f));
                         DonutPickup(true);
                     }
                 }
@@ -92,7 +92,7 @@ public class DonutTrigger : MonoBehaviour
                         if (m_employeeStatistics.m_donutTypeHeld == "n" || m_employeeStatistics.m_donutTypeHeld == "u")
                         {
                             m_playerNear = false;
-                            StartCoroutine(Timer(.75f));
+                            StartCoroutine(Timer(1f));
                             DonutPickup(false);
                         }
                     }
@@ -105,7 +105,7 @@ public class DonutTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Employee"))
         {
-            StopCoroutine(Timer(.75f));
+            StopCoroutine(Timer(1f));
         }
     }
 
