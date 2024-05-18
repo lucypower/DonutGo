@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerStatistics : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerStatistics : MonoBehaviour
 
 
     public int m_money;
+    public int m_gems;
 
     // upgrades
 
@@ -22,6 +24,11 @@ public class PlayerStatistics : MonoBehaviour
     public bool m_broughtAdFree;
 
     public bool m_xProfitActive;
+
+    private void Awake()
+    {
+        m_gems = 1000;
+    }
 
     private void Update()
     {

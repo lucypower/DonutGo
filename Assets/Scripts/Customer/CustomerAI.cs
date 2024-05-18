@@ -15,7 +15,7 @@ public class CustomerAI : MonoBehaviour
 
     Vector3 m_offset;
 
-    [HideInInspector] public bool m_atCounter;
+    public bool m_atCounter;
     bool m_inQueue;
     bool m_leavingBuilding;
 
@@ -24,6 +24,7 @@ public class CustomerAI : MonoBehaviour
     public GameObject m_orderUI;
     public TextMeshProUGUI m_orderText;
 
+    NavMeshAgent m_agent;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class CustomerAI : MonoBehaviour
         m_leaveLocation1 = GameObject.FindGameObjectWithTag("LeaveLocation");
         m_leaveLocation2 = GameObject.FindGameObjectWithTag("LeaveLocation2");
 
+        m_agent = GetComponent<NavMeshAgent>();
 
         m_offset = new Vector3(0, 0, (m_gameManager.m_spawnedCustomers.Count - 1) * 2);
         m_inQueue = true;

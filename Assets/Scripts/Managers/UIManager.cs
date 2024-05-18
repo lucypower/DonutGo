@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TMP_Text m_moneyText;
     [SerializeField] TMP_Text m_profitText;
+    [SerializeField] TMP_Text m_gemsText;
     [SerializeField] GameObject m_upgradeMenu;
     [SerializeField] GameObject[] m_upgradeScreens;
     public bool m_playerScreenActive;
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         m_moneyText.text = "Money : " + m_playerStatistics.m_money;
+        m_gemsText.text = "Gems : " + m_playerStatistics.m_gems;
 
         if (m_playerStatistics.m_xProfitActive)
         {

@@ -15,8 +15,15 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     //Step 1 create your products
 
-    private string tempPurchase = "temp_purchase";
-    private string tempPurchase2 = "temp_purchase2";
+    //private string tempPurchase = "temp_purchase";
+    //private string tempPurchase2 = "temp_purchase2";
+
+    private string gems10 = "10_gems";
+    private string gems50 = "50_gems";
+    private string gems100 = "100_gems";
+    private string gems500 = "500_gems";
+    private string gems1000 = "1000_gems";
+    private string gems5000 = "5000_gems";
 
     //************************** Adjust these methods **************************************
     public void InitializePurchasing()
@@ -26,8 +33,15 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
         //Step 2 choose if your product is a consumable or non consumable
 
-        builder.AddProduct(tempPurchase, ProductType.Consumable);
-        builder.AddProduct(tempPurchase2, ProductType.Consumable);
+        //builder.AddProduct(tempPurchase, ProductType.Consumable);
+        //builder.AddProduct(tempPurchase2, ProductType.Consumable);
+
+        builder.AddProduct(gems10, ProductType.Consumable);
+        builder.AddProduct(gems50, ProductType.Consumable);
+        builder.AddProduct(gems100, ProductType.Consumable);
+        builder.AddProduct(gems500, ProductType.Consumable);
+        builder.AddProduct(gems1000, ProductType.Consumable);
+        builder.AddProduct(gems5000, ProductType.Consumable);
 
         UnityPurchasing.Initialize(this, builder);
     }
@@ -40,27 +54,63 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
 
     //Step 3 Create methods
-    public void TempPurchase()
+    public void Gems10()
     {
-        BuyProductID(tempPurchase);
+        BuyProductID(gems10);
     }
-    public void TempPurchase2()
+    public void Gems50()
     {
-        BuyProductID(tempPurchase2);
+        BuyProductID(gems50);
+    }
+    public void Gems100()
+    {
+        BuyProductID(gems100);
+    }
+    public void Gems500()
+    {
+        BuyProductID(gems500);
+    }
+    public void Gems1000()
+    {
+        BuyProductID(gems1000);
+    }
+    public void Gems5000()
+    {
+        BuyProductID(gems5000);
     }
 
     //Step 4 modify purchasing
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
-        if (String.Equals(args.purchasedProduct.definition.id, tempPurchase, StringComparison.Ordinal))
+        if (String.Equals(args.purchasedProduct.definition.id, gems10, StringComparison.Ordinal))
         {
             Debug.Log("temp purchase");
-            FindObjectOfType<PurchaseManager>().BuyTempPurchase();
+            FindObjectOfType<PurchaseManager>().Gems10();
         }
-        else if (String.Equals(args.purchasedProduct.definition.id, tempPurchase2, StringComparison.Ordinal))
+        else if (String.Equals(args.purchasedProduct.definition.id, gems50, StringComparison.Ordinal))
         {
             Debug.Log("temp purchase");
-            FindObjectOfType<PurchaseManager>().BuyTempPurchase2();
+            FindObjectOfType<PurchaseManager>().Gems50();
+        }
+        else if(String.Equals(args.purchasedProduct.definition.id, gems100, StringComparison.Ordinal))
+        {
+            Debug.Log("temp purchase");
+            FindObjectOfType<PurchaseManager>().Gems100();
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, gems500, StringComparison.Ordinal))
+        {
+            Debug.Log("temp purchase");
+            FindObjectOfType<PurchaseManager>().Gems500();
+        }
+        else if(String.Equals(args.purchasedProduct.definition.id, gems1000, StringComparison.Ordinal))
+        {
+            Debug.Log("temp purchase");
+            FindObjectOfType<PurchaseManager>().Gems1000();
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, gems5000, StringComparison.Ordinal))
+        {
+            Debug.Log("temp purchase");
+            FindObjectOfType<PurchaseManager>().Gems5000();
         }
         else
         {
@@ -151,13 +201,29 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
 
-        if (product.definition.id == tempPurchase)
+        if (product.definition.id == gems10)
         {
-            FindObjectOfType<PurchaseManager>().BuyTempPurchaseFailed();
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
         }
-        else if (product.definition.id == tempPurchase2)
+        else if (product.definition.id == gems50)
         {
-            FindObjectOfType<PurchaseManager>().BuyTempPurchaseFailed2();
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
+        }
+        else if(product.definition.id == gems100)
+        {
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
+        }
+        else if (product.definition.id == gems500)
+        {
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
+        }
+        else if(product.definition.id == gems1000)
+        {
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
+        }
+        else if (product.definition.id == gems5000)
+        {
+            FindObjectOfType<PurchaseManager>().PurchaseFailed();
         }
     }
 
