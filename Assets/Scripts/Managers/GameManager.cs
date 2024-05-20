@@ -44,7 +44,11 @@ public class GameManager : MonoBehaviour
     // settings
 
     public bool m_hapticOn;
+    public bool m_soundOn;
+    public bool m_musicOn;
     [SerializeField] private GameObject m_tutorialWindow;
+
+    [SerializeField] AudioSource m_audioSource; 
 
     private void Awake()
     {
@@ -73,6 +77,12 @@ public class GameManager : MonoBehaviour
         }
 
         Save();
+
+        m_audioSource.Play();
+
+        m_hapticOn = true;
+        m_soundOn = true;
+        m_musicOn = true;
     }
 
     private void Start()
@@ -115,6 +125,7 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         m_player.m_money = data.m_money;
+        m_player.m_gems = data.m_gems;
         m_player.m_walkLevel = data.m_playerWalkLevel;
         m_player.m_holdLevel = data.m_playerHoldLevel;
         m_player.m_profitLevel = data.m_playerProfitLevel;
@@ -166,6 +177,32 @@ public class GameManager : MonoBehaviour
         else
         {
             m_hapticOn = true;
+        }
+    }
+
+    public void SoundSetting()
+    {
+        if (m_soundOn)
+        {
+            m_soundOn = false;
+        }
+        else
+        {
+            m_soundOn = true;
+        }
+    }
+
+    public void MusicSetting()
+    {
+        if (m_musicOn)
+        {
+            m_musicOn = false;
+            m_audioSource.Stop();
+        }
+        else
+        {
+            m_musicOn = true;
+            m_audioSource.Play();
         }
     }
 

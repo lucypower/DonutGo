@@ -15,6 +15,7 @@ public class IcingTrigger : MonoBehaviour
     [SerializeField] private Transform m_cookedDonutHold;
 
     private bool m_playerNear;
+    private bool m_switchover;
 
     private void Start()
     {
@@ -40,10 +41,13 @@ public class IcingTrigger : MonoBehaviour
             {
                 if (m_playerStats.m_donutTypeHeld == "n" || m_playerStats.m_donutTypeHeld == "i")
                 {
-                    if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                    if (!m_switchover)
                     {
-                        CollectIced(true);
-                        RestartCoroutine();
+                        if (m_playerStats.m_donutsHeld.Count < m_playerStats.m_maxDonuts)
+                        {
+                            CollectIced(true);
+                            RestartCoroutine();
+                        }
                     }
                 }
                 else if (m_playerStats.m_donutTypeHeld == "c")
@@ -129,6 +133,7 @@ public class IcingTrigger : MonoBehaviour
             if (m_playerStats.m_donutsHeld.Count == 0)
             {
                 m_playerStats.m_donutTypeHeld = "n";
+                StartCoroutine(SwitchoverTimer(3));
             }
         }
         else
@@ -152,6 +157,13 @@ public class IcingTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         m_playerNear = true;
+    }
+
+    IEnumerator SwitchoverTimer(float time)
+    {
+        m_switchover = true;
+        yield return new WaitForSeconds(time);
+        m_switchover = false;
     }
 
     public void RestartCoroutine()

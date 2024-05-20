@@ -8,6 +8,7 @@ public class PlayerData
     //player
 
     public int m_money;
+    public int m_gems;
     public int m_playerWalkLevel;
     public int m_playerHoldLevel;
     public float m_playerProfitLevel;
@@ -55,6 +56,7 @@ public class PlayerData
         // player
 
         m_money = player.m_money;
+        m_gems = player.m_gems;
         m_playerWalkLevel = player.m_walkLevel;
         m_playerHoldLevel = player.m_holdLevel;
         m_playerProfitLevel = player.m_profitLevel;

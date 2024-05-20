@@ -9,6 +9,8 @@ public class CounterTrigger : MonoBehaviour
     PlayerStatistics m_playerStatistics;
     EmployeeStatistics m_employeeStatistics;
 
+    [SerializeField] AudioSource m_audioSource;
+
     [SerializeField] private List<CustomerAI> m_customerAI;
     public bool m_playerNear;
 
@@ -39,7 +41,7 @@ public class CounterTrigger : MonoBehaviour
             donut.transform.position = customerHold.position + offset;
         
             m_customerAI[0].m_donutsHeld.Add(donut);
-            m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);
+            m_playerStatistics.m_donutsHeld.Remove(m_playerStatistics.m_donutsHeld[0]);            
 
             if (m_playerStatistics.m_donutsHeld.Count == 0)
             {
@@ -78,8 +80,13 @@ public class CounterTrigger : MonoBehaviour
 
         if (m_customerAI[0].m_donutsHeld.Count >= m_customerAI[0].m_orderTotal)
         {
-            m_customerAI[0].LeaveQueue();
+            m_customerAI[0].LeaveQueue();            
             RemoveCustomer();
+
+            if (m_gameManager.m_soundOn)
+            {
+                m_audioSource.Play();
+            }
         }
     }
 
