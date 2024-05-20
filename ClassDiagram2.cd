@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FacebookManager">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAIAAAAAAQAAAECAAAAAAABAAAAAQACAAAQAAEA=</HashCode>
+      <FileName>Assets\Facebook\FacebookManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CustomerAI">
+    <Position X="5.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQIgCAAACAAIAIAAAIAAAAEAAAAIBAAAAAABAAgCQI=</HashCode>
+      <FileName>Assets\Scripts\Customer\CustomerAI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameManager" />
+      <Field Name="m_statistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CustomerStatistics">
+    <Position X="3.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Customer\CustomerStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Donut">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Donut\Donut.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_donutCounter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DonutCounter">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <AssociationLine Name="m_upgradeManager" Type="UpgradeManager">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.729" Y="0.007" Height="0.182" Width="0.735" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAIAAAAAAAIAAAAAAAAQAAAABAAgQCAAA=</HashCode>
+      <FileName>Assets\Scripts\Donut\DonutCounter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_upgradeManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DonutTrigger">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <AssociationLine Name="m_donutCounter" Type="DonutCounter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.073" Y="0.003" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_employeeStatistics" Type="EmployeeStatistics">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.642" Y="0.057" Height="0.182" Width="0.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIBAAAAAAAgAAACAAAIBAQAAAAEAGAAA=</HashCode>
+      <FileName>Assets\Scripts\Donut\DonutTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_donutCounter" />
+      <Field Name="m_employeeStatistics" />
+      <Field Name="m_playerStatistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EmployeeAI">
+    <Position X="11.5" Y="11.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="EmployeeAI.AIState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Employee\EmployeeAI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="m_cookingStation" Type="CookingStation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.023" Y="0" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_donutCounter" Type="DonutCounter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.842" Y="0.087" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_icingStation" Type="IcingStation">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.016" Y="0.067" Height="0.182" Width="0.608" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABQAAAAgQiABQAQAEAIAAAAEgAAAAAgAIAAAAGAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Employee\EmployeeAI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_cookingStation" />
+      <Field Name="m_donutCounter" />
+      <Field Name="m_gameManager" />
+      <Field Name="m_icingStation" />
+      <Field Name="m_stats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EmployeeStatistics">
+    <Position X="13.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAAAAAAAAAAAAAgAAgAAAAAIAAAgAAE=</HashCode>
+      <FileName>Assets\Scripts\Employee\EmployeeStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="15.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgEgKABACABRAAEABAEQoAJAAAAIQFJGAAAAgQAgEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_upgradeManager" />
+      <Field Name="m_interstitalAds" />
+      <Field Name="m_hourlyRewards" />
+      <Field Name="m_debugEmployee" />
+      <Field Name="m_counterTrigger" />
+      <Field Name="m_dailyRewards" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UIManager">
+    <Position X="19" Y="11" Width="1.5" />
+    <AssociationLine Name="m_upgradeManager" Type="UpgradeManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.01" Y="0.444" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>JbQBAGAAACBAIAADAAAAAABAAAAAABAAAGIAAAQQQAE=</HashCode>
+      <FileName>Assets\Scripts\Managers\UIManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameManager" />
+      <Field Name="m_playerStatistics" />
+      <Field Name="m_upgradeManager" />
+      <Field Name="m_upgradeShop" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UpgradeManager">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAKAAAAAAAAEQAAAAEAAAAAgAAABCAAAACAAAJA=</HashCode>
+      <FileName>Assets\Scripts\Managers\UpgradeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Advertisments" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAIEAAAAIAAAAAIAABAACAAAgAAIgEA=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\Advertisments.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameManager" />
+      <Field Name="m_rewardAds" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="IAPManager" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <AssociationLine Name="m_playerStats" Type="PlayerStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.178" Y="0.138" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgBABAAAACNAAEAEQEABAEgCAABABEAECAAABAEAAEQ=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\IAPManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InitializeGameServices">
+    <Position X="26" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\InitializeGameServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterstitalAds" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EBQAAAgAAAAAAAQAQgAACAAAAAAAQAAAAAEAgAgAAEA=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\InterstitalAds.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_advertisments" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PurchaseManager">
+    <Position X="23.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAEAAAAABAAFAGQEAAAAAAAgBAAAAAAACAAAAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\PurchaseManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RewardAds" BaseTypeListCollapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UBQBAAwAAAAAAAQAAkAACAEAAAAAQAABAAAAgAgQAEA=</HashCode>
+      <FileName>Assets\Scripts\Monetisation\RewardAds.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CameraBehaviour">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAEAABAAAEAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\CameraBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMovement">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <AssociationLine Name="m_statistics" Type="PlayerStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.285" Y="-0.038" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAiAAQAAAEAAAAAIAgAAAAAAQAAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_statistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerStatistics">
+    <Position X="15.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAIAAAQAAAAAAAAAwAAgAAACCIUAAgCEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DailyRewards">
+    <Position X="25.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAQAAACAAEgAAAFCAIAAAAARAAAAQACCAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\RewardSystem\DailyRewards.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HourlyRewards">
+    <Position X="23.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQGEQAAACAAEgABAECAIAAAAARAAAAQACCAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\RewardSystem\HourlyRewards.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerData">
+    <Position X="27.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQACAAKAgAAAAAAASAAAAEAAAAAgAAABCAAAUiCAQLk=</HashCode>
+      <FileName>Assets\Scripts\SaveSystem\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveSystem">
+    <Position X="27.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SaveSystem\SaveSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CookingStation">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <AssociationLine Name="m_upgradeManager" Type="UpgradeManager">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.053" Y="0.163" Height="0.182" Width="0.562" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQgAAIAACAAIAAAACBQAAAAEAAAAAAAAAAAAAQHAAA=</HashCode>
+      <FileName>Assets\Scripts\Stations\CookingStation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_upgradeManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CookingTrigger">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <AssociationLine Name="m_cooker" Type="CookingStation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.772" Y="0.057" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_employeeStats" Type="EmployeeStatistics">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.712" Y="0.07" Height="0.182" Width="0.624" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgAACECACEAABQAAUAAAgBAAAAAAABAQAAAAAAFAAA=</HashCode>
+      <FileName>Assets\Scripts\Stations\CookingTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_cooker" />
+      <Field Name="m_employeeAI" />
+      <Field Name="m_employeeStats" />
+      <Field Name="m_playerStats" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CounterTrigger">
+    <Position X="3.5" Y="6.25" Width="1.5" />
+    <AssociationLine Name="m_employeeStatistics" Type="EmployeeStatistics">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.016" Y="0.11" Height="0.182" Width="0.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACCAMBAAAQAAAAAAACAAAIAASAACAAAEAAA=</HashCode>
+      <FileName>Assets\Scripts\Stations\CounterTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_playerStatistics" />
+      <Field Name="m_gameManager" />
+      <Field Name="m_employeeStatistics" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="IcingStation">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIACAAIAQAAAAEAACAAAAAAAACAAAAIAQHAAA=</HashCode>
+      <FileName>Assets\Scripts\Stations\IcingStation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_upgradeManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="IcingTrigger">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <AssociationLine Name="m_employeeStats" Type="EmployeeStatistics">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.033" Y="0.037" Height="0.182" Width="0.77" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_playerStats" Type="PlayerStatistics">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.031" Y="0.241" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAECACAgABQAEUAQAgAAAAAAAABAQAABAAAFAAA=</HashCode>
+      <FileName>Assets\Scripts\Stations\IcingTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_employeeAI" />
+      <Field Name="m_employeeStats" />
+      <Field Name="m_playerStats" />
+      <Field Name="m_icingStation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UpgradeShop">
+    <Position X="21.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBwACAAAACAAIAAAAAAgAAAAAAAAAIAAQAABAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Triggers\UpgradeShop.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameManager" />
+      <Field Name="m_playerStatistics" />
+      <Field Name="m_uiManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UpgradeTrigger">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hBAAAAAAACAAIBAAAAAAAAAAAAAAAAACQAAAAAQEAAA=</HashCode>
+      <FileName>Assets\Scripts\Triggers\UpgradeTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_gameManager" />
+      <Field Name="m_playerStatistics" />
+      <Field Name="m_uiManager" />
+      <Field Name="m_upgradeManager" />
+      <Field Name="m_playerMovement" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
