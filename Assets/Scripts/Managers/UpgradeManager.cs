@@ -24,6 +24,6 @@ public class UpgradeManager : MonoBehaviour
 
     // customer counter
 
-    public int m_customerCounterLevel;
+    public float m_customerCounterLevel;
     public int m_customerSpawnTimeLevel;
 }

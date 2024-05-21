@@ -26,7 +26,7 @@ public class PlayerData
     public int m_donutCapacityLevel;
     public int m_donutSpawnTimeLevel;
 
-    public int m_customerCounterLevel;
+    public float m_customerCounterLevel;
 
     // cooking counter
 
