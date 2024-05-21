@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,12 +49,19 @@ public class GameManager : MonoBehaviour
     public bool m_soundOn;
     public bool m_musicOn;
     [SerializeField] private GameObject m_tutorialWindow;
+    [SerializeField] Sprite[] m_musicSprite;
+    [SerializeField] Sprite[] m_soundSprite;
+    [SerializeField] Image m_musicImage;
+    [SerializeField] Image m_soundImage;
 
-    [SerializeField] AudioSource m_audioSource; 
+    [SerializeField] AudioSource m_audioSource;
+    [SerializeField] Button m_adButton;
+    private TextMeshProUGUI m_buttonText;
 
     private void Awake()
     {
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerStatistics>();
+        m_buttonText = m_adButton.GetComponentInChildren<TextMeshProUGUI>();
 
         int hasPlayed = PlayerPrefs.GetInt("m_firstTime");
 
@@ -100,7 +109,7 @@ public class GameManager : MonoBehaviour
             m_counterTrigger.UpdateCustomerList(m_spawnedCustomers.Last());
         }        
 
-        StartCoroutine(SpawnTimer(11 - m_upgradeManager.m_customerCounterLevel));
+        StartCoroutine(SpawnTimer(5));
     }
 
     public void SpawnEmployee()
@@ -156,6 +165,12 @@ public class GameManager : MonoBehaviour
         m_hourlyRewards.m_hourClaimed = data.m_hourClaimed;
 
         m_player.m_broughtAdFree = data.m_broughtAdFree;
+
+        if (m_player.m_broughtAdFree)
+        {
+            m_adButton.interactable = false;
+            m_buttonText.text = "Purchased!";
+        }
     }
 
     public void ShowAdvert()
@@ -185,10 +200,12 @@ public class GameManager : MonoBehaviour
         if (m_soundOn)
         {
             m_soundOn = false;
+            m_soundImage.sprite = m_soundSprite[1];
         }
         else
         {
             m_soundOn = true;
+            m_soundImage.sprite = m_soundSprite[0];
         }
     }
 
@@ -198,11 +215,13 @@ public class GameManager : MonoBehaviour
         {
             m_musicOn = false;
             m_audioSource.Stop();
+            m_musicImage.sprite = m_musicSprite[1];
         }
         else
         {
             m_musicOn = true;
             m_audioSource.Play();
+            m_musicImage.sprite = m_musicSprite[0];
         }
     }
 

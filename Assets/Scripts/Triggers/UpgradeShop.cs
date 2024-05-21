@@ -43,13 +43,59 @@ public class UpgradeShop : MonoBehaviour
 
     public void CalculateCost()
     {
-        m_upgradeCosts[0] = Mathf.Pow(m_playerStatistics.m_walkLevel + 1, 3) * 100;
-        m_upgradeCosts[1] = Mathf.Pow(m_playerStatistics.m_holdLevel + 1, 3) * 100;
-        m_upgradeCosts[2] = Mathf.Pow(m_playerStatistics.m_profitLevel + 1, 3) * 100;
+        if (m_playerStatistics.m_walkLevel < 5)
+        {
+            m_upgradeCosts[0] = Mathf.Pow(m_playerStatistics.m_walkLevel + 1, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[0] = 0;
+        }
 
-        m_upgradeCosts[3] = Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel + 1, 3) * 100;
-        m_upgradeCosts[4] = Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel + 1, 3) * 100;
-        m_upgradeCosts[5] = Mathf.Pow(m_gameManager.m_debugEmployee.m_numOfEmployees + 1, 3) * 200;
+        if (m_playerStatistics.m_holdLevel < 5)
+        {
+            m_upgradeCosts[1] = Mathf.Pow(m_playerStatistics.m_holdLevel + 1, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[1] = 0;
+        }
+
+        if (m_playerStatistics.m_profitLevel < 10)
+        {
+            m_upgradeCosts[2] = Mathf.Pow(m_playerStatistics.m_profitLevel + 1, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[2] = 0;
+        }
+
+        if (m_gameManager.m_debugEmployee.m_walkLevel < 5)
+        {
+            m_upgradeCosts[3] = Mathf.Pow(m_gameManager.m_debugEmployee.m_walkLevel + 1, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[3] = 0;
+        }
+
+        if (m_gameManager.m_debugEmployee.m_holdLevel < 5)
+        {
+            m_upgradeCosts[4] = Mathf.Pow(m_gameManager.m_debugEmployee.m_holdLevel + 1, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[4] = 0;
+        }
+
+        if (m_gameManager.m_debugEmployee.m_numOfEmployees < 1)
+        {
+            m_upgradeCosts[5] = Mathf.Pow(m_gameManager.m_debugEmployee.m_numOfEmployees + 4, 3) * 100;
+        }
+        else
+        {
+            m_upgradeCosts[5] = 0;
+        }
     }
 
     #region Trigger Enter/Exit

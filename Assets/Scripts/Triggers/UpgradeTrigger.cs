@@ -30,7 +30,7 @@ public class UpgradeTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(Timer(2f));
+            StartCoroutine(Timer(3));
         }
     }
 
@@ -70,7 +70,7 @@ public class UpgradeTrigger : MonoBehaviour
                                 }
 
                                 m_playerNear = false;
-                                StartCoroutine(Timer(2f));
+                                StartCoroutine(Timer(3));
                             }
                         }
 
@@ -82,12 +82,12 @@ public class UpgradeTrigger : MonoBehaviour
                         {
                             if (m_playerStatistics.m_money >= m_upgradeManager.m_customerCounterLevel * 1000)
                             {
-                                m_playerStatistics.m_money -= m_upgradeManager.m_customerCounterLevel * 1000;  
+                                m_playerStatistics.m_money -= (int)m_upgradeManager.m_customerCounterLevel * 1000;  
                                 m_upgradeManager.m_customerCounterLevel++;
 
-                                int money = m_upgradeManager.m_customerCounterLevel * 1000;
+                                int money = (int)m_upgradeManager.m_customerCounterLevel * 1000;
 
-                                m_uiManager.UpdateUpgradeUI(m_station, m_upgradeManager.m_customerCounterLevel, money);
+                                m_uiManager.UpdateUpgradeUI(m_station, (int)m_upgradeManager.m_customerCounterLevel, money);
 
                                 if (m_gameManager.m_hapticOn)
                                 {
@@ -95,7 +95,7 @@ public class UpgradeTrigger : MonoBehaviour
                                 }
 
                                 m_playerNear = false;
-                                StartCoroutine(Timer(2f));
+                                StartCoroutine(Timer(3));
 
                             }
                         }
@@ -130,7 +130,7 @@ public class UpgradeTrigger : MonoBehaviour
                                 }
 
                                 m_playerNear = false;
-                                StartCoroutine(Timer(2f));
+                                StartCoroutine(Timer(3));
                             }
                         }
 
@@ -164,7 +164,7 @@ public class UpgradeTrigger : MonoBehaviour
                                 }
 
                                 m_playerNear = false;
-                                StartCoroutine(Timer(2f));
+                                StartCoroutine(Timer(3));
                             }
                         }
 

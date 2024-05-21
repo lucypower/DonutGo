@@ -56,11 +56,11 @@ public class UIManager : MonoBehaviour
 
         if (m_playerStatistics.m_xProfitActive)
         {
-            m_profitText.text = "x" + ((1 + (m_playerStatistics.m_profitLevel / 10)) * 2);
+            m_profitText.text = "x" + ((1 + (m_playerStatistics.m_profitLevel / 10) + (m_upgradeManager.m_customerCounterLevel / 5)) * 2);
         }
         else
         {
-            m_profitText.text = "x" + (1 + (m_playerStatistics.m_profitLevel / 10));
+            m_profitText.text = "x" + (1 + (m_playerStatistics.m_profitLevel / 10) + (m_upgradeManager.m_customerCounterLevel / 5));
         }        
     }
 
@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
         UpdateShopUI("Employee", 0, false);
 
         UpdateUpgradeUI("Donut", m_upgradeManager.m_donutCounterLevel, m_upgradeManager.m_donutCounterLevel * 1000);
-        UpdateUpgradeUI("Customer", m_upgradeManager.m_customerCounterLevel, m_upgradeManager.m_customerCounterLevel * 1000);
+        UpdateUpgradeUI("Customer", (int)m_upgradeManager.m_customerCounterLevel, (int)m_upgradeManager.m_customerCounterLevel * 1000);
         UpdateUpgradeUI("Cooking", m_upgradeManager.m_cookingLevel, m_upgradeManager.m_cookingLevel * 1000);
         UpdateUpgradeUI("Icing", m_upgradeManager.m_icingLevel, m_upgradeManager.m_icingLevel * 1000);
     }
@@ -188,6 +188,11 @@ public class UIManager : MonoBehaviour
             case "Employee":
 
                 m_employeeUpgradeCost[2].text = "Costs " + m_upgradeShop.m_upgradeCosts[5];
+
+                if (m_gameManager.m_debugEmployee.m_numOfEmployees == 1)
+                {
+                    m_employeeUpgradeCost[2].text = "All Employees Hired!";
+                }
 
                 break;
         }

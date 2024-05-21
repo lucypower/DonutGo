@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStatistics : MonoBehaviour
 {
@@ -25,9 +27,13 @@ public class PlayerStatistics : MonoBehaviour
 
     public bool m_xProfitActive;
 
+    [SerializeField] Button m_adButton;
+    private TextMeshProUGUI m_buttonText;
+
     private void Awake()
     {
         m_gems = 1000;
+        m_buttonText = m_adButton.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -38,6 +44,8 @@ public class PlayerStatistics : MonoBehaviour
     public void BuyAdFree()
     {
         m_broughtAdFree = true;
+        m_adButton.interactable = false;
+        m_buttonText.text = "Purchased!";
     }
 
     public void DebugNoAddFree() // TODO: DEBUG

@@ -8,6 +8,7 @@ public class CounterTrigger : MonoBehaviour
     GameManager m_gameManager;
     PlayerStatistics m_playerStatistics;
     EmployeeStatistics m_employeeStatistics;
+    UpgradeManager m_upgradeManager;
 
     [SerializeField] AudioSource m_audioSource;
 
@@ -18,6 +19,7 @@ public class CounterTrigger : MonoBehaviour
     {
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_playerStatistics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
+        m_upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
     }
 
     public void UpdateCustomerList(GameObject customer)
@@ -69,11 +71,11 @@ public class CounterTrigger : MonoBehaviour
 
         if (m_playerStatistics.m_xProfitActive)
         {
-            money = Mathf.FloorToInt(random * ((1 + (m_playerStatistics.m_profitLevel / 10)) * 2));
+            money = Mathf.FloorToInt(random * ((1 + (m_playerStatistics.m_profitLevel / 10) + (m_upgradeManager.m_customerCounterLevel / 5)) * 2));
         }
         else
         {
-            money = Mathf.FloorToInt(random * (1 + (m_playerStatistics.m_profitLevel / 10)));
+            money = Mathf.FloorToInt(random * (1 + (m_playerStatistics.m_profitLevel / 10) + (m_upgradeManager.m_customerCounterLevel / 5)));
         }
 
         m_playerStatistics.m_money += money;
