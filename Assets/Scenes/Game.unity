@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402295, g: 0.4931627, b: 0.5722325, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13704,7 +13704,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1196560040}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FacebookManager, Assembly-CSharp
         m_MethodName: FBLogin
         m_Mode: 1
@@ -18358,7 +18358,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196560041}
-  - component: {fileID: 1196560040}
   m_Layer: 0
   m_Name: FacebookManager
   m_TagString: Untagged
@@ -18366,21 +18365,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1196560040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196560039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8227b6f1cdc7edc4083724b48e91c837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerStats: {fileID: 376052817}
-  m_collectionScreen: {fileID: 541489673}
-  m_collectionText: {fileID: 1450432810}
 --- !u!4 &1196560041
 Transform:
   m_ObjectHideFlags: 0
@@ -28248,7 +28232,6 @@ GameObject:
   - component: {fileID: 1907481239}
   - component: {fileID: 1907481238}
   - component: {fileID: 1907481237}
-  - component: {fileID: 1907481240}
   - component: {fileID: 1907481241}
   m_Layer: 5
   m_Name: Canvas
@@ -28341,18 +28324,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1907481240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907481235}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 478fa778abe397741b1f66cb3820f407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1907481241
 CanvasRenderer:
   m_ObjectHideFlags: 0
