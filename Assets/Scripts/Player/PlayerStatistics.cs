@@ -31,8 +31,7 @@ public class PlayerStatistics : MonoBehaviour
     private TextMeshProUGUI m_buttonText;
 
     private void Awake()
-    {
-        m_gems = 1000;
+    {        
         m_buttonText = m_adButton.GetComponentInChildren<TextMeshProUGUI>();
     }
 
