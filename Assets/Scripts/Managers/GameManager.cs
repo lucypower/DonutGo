@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("first time");
 
             m_tutorialWindow.SetActive(true);
+            m_player.m_gems = 1000;
 
             PlayerPrefs.SetInt("m_firstTime", 1);
             PlayerPrefs.Save();
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
             m_counterTrigger.UpdateCustomerList(m_spawnedCustomers.Last());
         }        
 
-        StartCoroutine(SpawnTimer(5));
+        StartCoroutine(SpawnTimer(2));
     }
 
     public void SpawnEmployee()

@@ -42,7 +42,7 @@ public class DonutCounter : MonoBehaviour
 
         }
 
-        StartCoroutine(SpawnTimer(2));
+        StartCoroutine(SpawnTimer(6 - m_upgradeManager.m_donutSpawnTimeLevel));
     }
 
     public IEnumerator SpawnTimer(float waitTime)
